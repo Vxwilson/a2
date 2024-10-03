@@ -92,7 +92,7 @@
                   {
                     "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee.'",
                     "as": "exporttooltip"
-                  }, 
+                  },
                   {
                     "calculate": "toNumber(datum.export)",
                     "as": "export"
@@ -195,79 +195,71 @@
             ]
           },
           {
-            "title": { "text": "World Map" },
-            "width": 1000,
-            "height": 350,
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "width": 1000, "height": 400,
+            // "data": { "url": "data/exports-calendar-year" },
             "data": {
-              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-              "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+              "url": "data/exports-calendar-year.csv",
+              "format": { "type": "csv" },
+              "name": "exports_data"
+
             },
-            "projection": { "type": "equalEarth" },
-            "layer": [
+            "transform": [
               {
-                "data": { "graticule": true },
-                "mark": { "type": "geoshape", "stroke": "lightgray", "strokeWidth": 0.5 }
+                "fold": [
+                  "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+                  "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+                  "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+                ],
+                "as": ["year", "export"]
               },
               {
-                "transform": [
-                  {
-                    "calculate": "'No production'",
-                    "as": "note"
-                  }
-                ],
-                "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
-                "encoding": {
-                  "tooltip": [
-                    { "field": "properties.NAME", "type": "nominal", "title": "Country" },
-                    { "field": "note", "type": "nominal" }
-                  ]
+                "calculate": "datetime(parseInt(datum.year), 1, 1)",  // Convert year string to date
+                "as": "year_date"
+              },
+              // convert export to million bags
+              {
+                "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags'",
+                "as": "exporttooltip"
+              }
+            ],
+            "mark": "area",
+            "encoding": {
+              "x": {
+                "field": "year_date",
+                "timeUnit": "year",  // Now we can use timeUnit
+                "axis": {
+                  "domain": false,
+                  "format": "%Y",
+                  "tickSize": 0
                 }
               },
-              {
-                "transform": [
-                  {
-                    "lookup": "properties.NAME",
-                    "from": {
-                      "data": {
-                        "url": "data/exports-calendar-year.csv"
-                      },
-                      "key": "exports",
-                      "fields": [
-                        "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
-                        "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
-                        "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
-                      ],
-                    }
-                  },
-                  {
-                    "calculate": "datum['' + yearSelection]", 
-                    "as": "Count"
-                  },
-                  {
-                    "calculate": "format(datum['' + yearSelection] * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee.'",
-                    "as": "exporttooltip"
-                  }
-                ],
-                "mark": { "type": "geoshape", "stroke": "white" },
-                "encoding": {
-                  "color": {
-                    "field": "Count",
-                    "type": "quantitative",
-                    "scale": {
-                      // "scheme": "warmgreys"
-                      "scheme": "lightorange"
-                    },
-                  },
-                  "tooltip": [
-                    { "field": "properties.NAME", "type": "nominal", "title": "Country" },
-                    {
-                      "field": "exporttooltip", "title": "Exports"
-                    }
-                  ]
+              "y": {
+                // "aggregate": "sum", "field": "export",
+                // no need to aggregate as the data is already aggregated
+                "field": "export",
+                "type": "quantitative",
+                "axis": null,
+                "stack": "center"  // Or "normalize" for proportional view
+
+              },
+              "color": {
+                "field": "exports", "scale": { 
+                  // "scheme": "category20b" 
+                  // best color scheme for categorical data, with theme being coffee, but not gradient and not singular color
+                  "scheme": "category20b"
                 }
               },
-            ]
-          }
+              "tooltip": [ // Add tooltip encoding
+                { "field": "exports", "type": "nominal", "title": "Country" },
+                { "field": "year_date", "type": "temporal", "timeUnit": "year", "title": "Year", "format": "%Y" },
+                {
+                  "field": "exporttooltip",
+                  "title": "Total Export",
+                }
+              ]
+            }
+          },
         ]
       };
       vegaEmbed("#vis2", spec2, { mode: "vega-lite" }).then(console.log).catch(console.warn);
