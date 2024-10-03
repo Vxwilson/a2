@@ -1,0 +1,78 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: #f8f9fa;
+	color: #495057; 
+	margin: 0; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh; 
+  }
+
+  .vega-bind {
+	position: absolute;
+	top: 0px; /* Adjust as needed */
+  }
+  
+
+  .header {
+	padding: 10px;
+	text-align: left;
+	margin-bottom: 20px; 
+  }
+  
+  .header h1 {
+	font-size: 2.2em;
+	margin-bottom: 0.1em;
+  }
+  
+  .header h2 {
+	font-size: 1em;
+	margin-top: 0; 
+  }
+  
+  .container {
+	background-color: white;
+	padding: 20px;
+	padding-top: 50px;
+	border-radius: 8px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	min-width: 1200px;
+	max-width: 1200px;
+	margin: 0 auto;  /* Center container */
+	margin-bottom: 30px;
+  }
+  
+  #vis2 {
+	width: 100%; 
+  }
+  
+  .vega-embed {
+	border: none;
+  }
+  
+  .vega-lite .mark-rect {
+	stroke: none;
+  }
+  
+  .vega-tooltip {
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	border-radius: 4px;
+	font-size: 14px;
+  }
+  
+  .vega-tooltip-container div {
+	margin-bottom: 5px;
+  }
+  
+  .vega-bind {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+  }
+  
+  .vega-bind span {
+	font-size: 16px;
+  }

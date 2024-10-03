@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="header">
+    <h1>Homework week 10</h1>
+    <h2>Pong Vei Xhen 33480982</h2>
+    <div class="container">
+      <div id="vis2"></div>
+    </div>
+    <script>
+      const spec2 = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "config": {
+          "font": "Roboto", // Sets the default font for the entire chart
+          "title": {
+            "font": "Roboto",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "color": "#333" // Dark gray title color
+          },
+          "axis": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto",
+            "titleFontSize": 12
+          },
+          "legend": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+          }
+        },
+        "data": {
+          // "url": "data/total-production.csv",
+          "url": "data/exports-calendar-year.csv",
+          "format": { "type": "csv" },
+          "name": "exports_data"
+
+        },
+        "params": [
+          {
+            "name": "yearSelection",
+            "value": 1990,  // Default year
+            "bind": {
+              "input": "range",
+              "min": 1990, // Assuming data starts from 1990
+              "max": 2018, // Replace with the latest year in your data
+              "step": 1,
+              "name": "Year:"
+            }
+          }
+        ],
+        "transform": [
+          {
+            "fold": [
+              "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+              "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+              "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+            ],
+            "as": ["year", "export"]
+          },
+
+          {
+            "filter": "toNumber(datum.year) == yearSelection"
+          },
+          {
+            "calculate": "toNumber(datum.export) > 0",
+            "as": "hasExport"
+          },
+          {
+            "filter": "datum.hasExport == true"
+          },
+        ],
+        "vconcat": [
+          {
+            "width": 1000,
+            "height": 300,
+            "title": { "text": { "signal": "'Coffee Exports in ' + yearSelection" } }, // Use the dynamic title
+
+            "layer": [
+              {
+                // string for export tooltip
+                "transform": [
+                  {
+                    "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee.'",
+                    "as": "exporttooltip"
+                  }, 
+                  {
+                    "calculate": "toNumber(datum.export)",
+                    "as": "export"
+                  }
+
+                ],
+                "mark": {
+                  "type": "bar",
+                  "tooltip": true,
+                  "cornerRadiusEnd": 4,
+                },
+                "encoding": {
+                  "y": {
+                    "field": "export",
+                    "type": "quantitative",
+                    "title": "Exports (thousand 60kg bags)"
+                    // "scale": { "type": "log" }
+                  },
+                  "x": {
+                    "field": "exports",
+                    "type": "nominal",
+                    "sort": "-y",
+                    "stack": "null",
+                    "title": "Country"
+                  },
+                  "color": {
+                    "field": "export",
+                    "type": "quantitative",
+                    "scale": {
+                      // "scheme": "warmgreys"
+                      "scheme": "lightorange"
+                    },
+                    // "legend": null
+                  },
+                  "tooltip": [
+                    { "field": "exports", "type": "nominal", "title": "Country" },
+                    { "field": "exporttooltip", "title": "Exports" }
+                  ]
+                }
+              },
+              // annotate the longest bar using max
+              {
+                "transform": [
+                  { "calculate": "toNumber(datum.export)", "as": "export" },
+                  { "aggregate": [{ "op": "max", "field": "export", "as": "max_export" }] },
+                  {
+                    "calculate": "split('Brazil exported ' + format(datum.max_export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee,\\nleading first place at a huge margin.', '\\n')",
+                    "as": "formatted_export"
+                  }
+                ],
+                "mark": {
+                  "type": "text",
+                  "align": "left",
+                  "baseline": "middle",
+                  "format": ".2f",
+                  "dx": 30,
+                  "dy": 5,
+                  "fontSize": 13,
+                  "fontWeight": "bold",
+                  "color": "#333",
+                  "lineBreak": "\\n"
+                },
+                "encoding": {
+                  "text": { "field": "formatted_export" },
+                  "y": { "value": 20 },
+                  "x": { "value": 15 }
+                }
+              },
+              // annotate number of countries + sum of exports
+              {
+                "transform": [
+                  // find sum of exports by aggregating
+                  {
+                    "aggregate": [{ "op": "sum", "field": "export", "as": "totalExport" },
+                    { "op": "count", "as": "countryCount" }
+                    ]
+                  },
+                  { "calculate": "split('In ' + yearSelection + ', \\n' + datum.countryCount  + ' countries exported a total of \\n' +  format(datum.totalExport * 1000 / 1000000, '.2f') + ' million bags of coffee.', '\\n')", "as": "countryCount" }
+                ],
+                "mark": {
+                  "type": "text",
+                  "align": "left",
+                  "baseline": "middle",
+                  "format": ".2f",
+                  "dx": 650,
+                  "dy": 230,
+                  "fontSize": 13,
+                  "fontWeight": "bold",
+                  "color": "#333",
+                },
+                "encoding": {
+                  "text": { "field": "countryCount" },
+                  "y": { "value": 20 },
+                  "x": { "value": 15 }
+                }
+              }
+
+
+
+            ]
+          },
+          {
+            "title": { "text": "World Map" },
+            "width": 1000,
+            "height": 350,
+            "data": {
+              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+              "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+            },
+            "projection": { "type": "equalEarth" },
+            "layer": [
+              {
+                "data": { "graticule": true },
+                "mark": { "type": "geoshape", "stroke": "lightgray", "strokeWidth": 0.5 }
+              },
+              {
+                "transform": [
+                  {
+                    "calculate": "'No production'",
+                    "as": "note"
+                  }
+                ],
+                "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
+                "encoding": {
+                  "tooltip": [
+                    { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+                    { "field": "note", "type": "nominal" }
+                  ]
+                }
+              },
+              {
+                "transform": [
+                  {
+                    "lookup": "properties.NAME",
+                    "from": {
+                      "data": {
+                        "url": "data/exports-calendar-year.csv"
+                      },
+                      "key": "exports",
+                      "fields": [
+                        "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+                        "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+                        "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+                      ],
+                    }
+                  },
+                  {
+                    "calculate": "datum['' + yearSelection]", 
+                    "as": "Count"
+                  },
+                  {
+                    "calculate": "format(datum['' + yearSelection] * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee.'",
+                    "as": "exporttooltip"
+                  }
+                ],
+                "mark": { "type": "geoshape", "stroke": "white" },
+                "encoding": {
+                  "color": {
+                    "field": "Count",
+                    "type": "quantitative",
+                    "scale": {
+                      // "scheme": "warmgreys"
+                      "scheme": "lightorange"
+                    },
+                  },
+                  "tooltip": [
+                    { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+                    {
+                      "field": "exporttooltip", "title": "Exports"
+                    }
+                  ]
+                }
+              },
+            ]
+          }
+        ]
+      };
+      vegaEmbed("#vis2", spec2, { mode: "vega-lite" }).then(console.log).catch(console.warn);
+    </script>
+</body>
+
+</html>
