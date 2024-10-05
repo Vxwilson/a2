@@ -194,40 +194,92 @@
 
             ]
           },
+          // {
+          //   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          //   "width": 1000, "height": 400,
+          //   "data": {
+          //     "url": "data/exports-calendar-year.csv",
+          //     "format": { "type": "csv" },
+          //     "name": "exports_data"
+
+          //   },
+          //   "transform": [
+          //     {
+          //       "fold": [
+          //         "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+          //         "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+          //         "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+          //       ],
+          //       "as": ["year", "export"]
+          //     },
+          //     {
+          //       "calculate": "datetime(parseInt(datum.year), 1, 1)",  // Convert year string to date
+          //       "as": "year_date"
+          //     },
+          //     // convert export to million bags
+          //     {
+          //       "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags'",
+          //       "as": "exporttooltip"
+          //     }
+          //   ],
+          //   "mark": "area",
+          //   "encoding": {
+          //     "x": {
+          //       "field": "year_date",
+          //       "timeUnit": "year",
+          //       "axis": {
+          //         "domain": false,
+          //         "format": "%Y",
+          //         "tickSize": 0
+          //       }
+          //     },
+          //     "y": {
+          //       // "aggregate": "sum", "field": "export",
+          //       // no need to aggregate as the data is already aggregated
+          //       "field": "export",
+          //       "type": "quantitative",
+          //       "axis": null,
+          //       "stack": "center"
+
+          //     },
+          //     "color": {
+          //       "field": "exports", "scale": {
+          //         "scheme": "category20b"
+          //       }
+          //     },
+          //     "tooltip": [ // Add tooltip encoding
+          //       { "field": "exports", "type": "nominal", "title": "Country" },
+          //       { "field": "year_date", "type": "temporal", "timeUnit": "year", "title": "Year", "format": "%Y" },
+          //       {
+          //         "field": "exporttooltip",
+          //         "title": "Total Export",
+          //       }
+          //     ]
+          //   }
+          // },
+          // 
           {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 1000, "height": 400,
-            // "data": { "url": "data/exports-calendar-year" },
-            "data": {
-              "url": "data/exports-calendar-year.csv",
-              "format": { "type": "csv" },
-              "name": "exports_data"
 
+            "title": { "text": "Top 10 Coffee Exporting Countries Over Time" },
+            "width": 1000,
+            "height": 400,
+            "data": {
+              "url": "data/exports_top10_yearly.csv",  // Updated data source
+              "format": { "type": "csv" }
             },
             "transform": [
-              {
-                "fold": [
-                  "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
-                  "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
-                  "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
-                ],
-                "as": ["year", "export"]
-              },
-              {
-                "calculate": "datetime(parseInt(datum.year), 1, 1)",  // Convert year string to date
-                "as": "year_date"
-              },
-              // convert export to million bags
               {
                 "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags'",
                 "as": "exporttooltip"
               }
+              // Removed aggregate, window, and filter transforms
             ],
             "mark": "area",
             "encoding": {
               "x": {
-                "field": "year_date",
-                "timeUnit": "year",  // Now we can use timeUnit
+                "field": "year",
+                "type": "temporal",
                 "axis": {
                   "domain": false,
                   "format": "%Y",
@@ -235,34 +287,181 @@
                 }
               },
               "y": {
-                // "aggregate": "sum", "field": "export",
-                // no need to aggregate as the data is already aggregated
                 "field": "export",
                 "type": "quantitative",
                 "axis": null,
-                "stack": "center"  // Or "normalize" for proportional view
-
+                "stack": "center"
               },
               "color": {
-                "field": "exports", "scale": { 
-                  // "scheme": "category20b" 
-                  // best color scheme for categorical data, with theme being coffee, but not gradient and not singular color
+                "field": "exports",
+                "scale": {
                   "scheme": "category20b"
                 }
               },
-              "tooltip": [ // Add tooltip encoding
+              "tooltip": [
                 { "field": "exports", "type": "nominal", "title": "Country" },
-                { "field": "year_date", "type": "temporal", "timeUnit": "year", "title": "Year", "format": "%Y" },
+                { "field": "year", "type": "temporal", "title": "Year", "format": "%Y" },
                 {
                   "field": "exporttooltip",
-                  "title": "Total Export",
+                  "title": "Total Export"
                 }
               ]
             }
           },
+          // {
+          //   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          //   "title": { "text": "Coffee Prices Over Time" },
+          //   "width": 800,
+          //   "height": 400,
+          //   "data": {
+          //     "url": "data/indicator-prices.csv",
+          //     "format": { "type": "csv" }
+          //   },
+          //   "transform": [
+          //     {
+          //       "calculate": "timeParse(datum.months, '%m/%Y')", // Correct timeParse format
+          //       "as": "date"
+          //     }
+          //   ],
+          //   "mark": "line",
+          //   "encoding": {
+          //     "x": {
+          //       "field": "date",
+          //       "type": "temporal",
+          //       "title": "Month/Year",
+          //       "axis": { "format": "%b %Y" }
+          //     },
+          //     "y": {
+          //       "field": "ICO composite indicator",
+          //       "type": "quantitative",
+          //       "title": "ICO Composite Indicator Price",
+          //       "scale": { "zero": false } // Important for fluctuating prices
+          //     },
+          //     "color": {
+          //       "value": "steelblue"  // Or any other color you prefer
+          //     },
+          //     "tooltip": [
+          //       { "field": "date", "type": "temporal", "title": "Date", "format": "%b %Y" },
+          //       { "field": "ICO composite indicator", "type": "quantitative", "title": "ICO composite indicator", "format": ".2f" }
+          //     ]
+          //   }
+          // },
+          // 
+          // wrap the two charts in a hconcat
+          {
+            "hconcat": [
+              {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "title": { "text": "Coffee Prices Over Time" },
+                "width": 520,
+                "height": 420,
+                "data": {
+                  "url": "data/indicator-prices.csv",
+                  "format": { "type": "csv" }
+                },
+                "transform": [
+                  {
+                    "calculate": "timeParse(datum.months, '%m/%Y')",
+                    "as": "date"
+                  },
+                  {
+                    "fold": [
+                      // "ICO composite indicator",
+                      "Colombian Milds",
+                      "Other Milds",
+                      "Brazilian Naturals",
+                      "Robustas"
+                    ],
+                    "as": ["Coffee Type", "Price"]
+                  }
+                ],
+                // "mark": "line",
+                "mark": { "type": "line", "size": 2 },
+                "encoding": {
+                  "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "title": "Month/Year",
+                    "axis": { "format": "%b %Y" }
+                  },
+                  "y": {
+                    "field": "Price",
+                    "type": "quantitative",
+                    "title": "Price (US dollars per kilogram)",
+                    "scale": { "zero": false }
+                  },
+                  "color": {
+                    "field": "Coffee Type",
+                    "type": "nominal",
+                    "title": "Coffee Type"
+                  },
+                  "tooltip": [
+                    { "field": "date", "type": "temporal", "title": "Date", "format": "%b %Y" },
+                    { "field": "Coffee Type", "type": "nominal", "title": "Coffee Type" },
+                    { "field": "Price", "type": "quantitative", "title": "Price", "format": ".2f" }
+                  ]
+                }
+              },
+              {
+
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                // coffee price difference to average
+                "title": { "text": "Coffee Price Difference to Average Over Time" },
+                "width": 520,
+                "height": 420,
+                "data": {
+                  "url": "data/indicator_prices_avgdiff.csv",
+                  "format": { "type": "csv" }
+                },
+                "transform": [
+                  {
+                    "calculate": "timeParse(datum.months, '%m/%Y')",
+                    "as": "date"
+                  },
+                  {
+                    "fold": [
+                      // "ICO composite indicator",
+                      "Colombian Milds",
+                      "Other Milds",
+                      "Brazilian Naturals",
+                      "Robustas"
+                    ],
+                    "as": ["Coffee Type", "Price"]
+                  }
+                ],
+                // "mark": "line",
+                "mark": { "type": "line", "size": 2 },
+                "encoding": {
+                  "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "title": "Month/Year",
+                    "axis": { "format": "%b %Y" }
+                  },
+                  "y": {
+                    "field": "Price",
+                    "type": "quantitative",
+                    "title": "",
+                    // "title": "Price (US dollars per kilogram)",
+                    "scale": { "zero": false }
+                  },
+                  "color": {
+                    "field": "Coffee Type",
+                    "type": "nominal",
+                    "title": "Coffee Type"
+                  },
+                  "tooltip": [
+                    { "field": "date", "type": "temporal", "title": "Date", "format": "%b %Y" },
+                    { "field": "Coffee Type", "type": "nominal", "title": "Coffee Type" },
+                    { "field": "Price", "type": "quantitative", "title": "Price", "format": ".2f" }
+                  ]
+                }
+              }
+            ]
+          }
         ]
       };
-      vegaEmbed("#vis2", spec2, { mode: "vega-lite" , renderer: "svg"}).then(console.log).catch(console.warn);
+      vegaEmbed("#vis2", spec2, { mode: "vega-lite", renderer: "svg" }).then(console.log).catch(console.warn);
     </script>
 </body>
 
