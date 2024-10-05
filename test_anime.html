@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animated Bar Chart with Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script src="https://d3js.org/d3-timer.v2.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="vis"></div>
+    </div>
+    <script>
+        // Vega-Lite specification
+        const vlSpec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "A racing bar chart.",
+            "width": 400,
+            "height": 200,
+            "data": {
+                "name": "myData",
+                "values": [
+                    { "category": "A", "value": 0 },
+                    { "category": "B", "value": 0 },
+                    { "category": "C", "value": 0 }
+                ]
+            },
+            "mark": "bar",
+            "encoding": {
+                "x": { "field": "value", "type": "quantitative", "axis": null }, // X-axis is the value
+                "y": { "field": "category", "type": "nominal", "sort": "-x" }, // Sort by value (descending)
+                "color": { "field": "category", "type": "nominal" }
+            }
+        };
+        // Embed Vega-Lite chart
+        vegaEmbed('#vis', vlSpec).then(result => {
+            const view = result.view;
+            let i = 0;
+
+            // Animation loop (using d3-timer)
+            d3.interval(() => {
+                let data;
+
+                if (i < 10) { // Initial lead for A
+                    data = [
+                        { "category": "A", "value": 60 + Math.random() * 20 },
+                        { "category": "B", "value": Math.random() * 40 },
+                        { "category": "C", "value": Math.random() * 30 }
+                    ];
+                } else if (i < 25) { // B starts catching up
+                    data = [
+                        { "category": "A", "value": 80 + Math.random() * 10 },
+                        { "category": "B", "value": 50 + Math.random() * 30 },
+                        { "category": "C", "value": 10 + Math.random() * 40 }
+                    ];
+                } else { // B takes a huge lead
+                    data = [
+                        { "category": "A", "value": 90 + Math.random() * 5 },
+                        { "category": "B", "value": 100 + Math.random() * 40 },
+                        { "category": "C", "value": 30 + Math.random() * 50 }
+                    ];
+                }
+
+                view.change('myData', vega.changeset().remove([]).insert(data)).runAsync();
+
+                i++;
+
+            }, 200); // Faster interval for smoother animation
+        });
+    </script>
+
+</body>
+
+</html>

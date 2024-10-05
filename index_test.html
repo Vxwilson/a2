@@ -262,7 +262,7 @@
           },
         ]
       };
-      vegaEmbed("#vis2", spec2, { mode: "vega-lite" }).then(console.log).catch(console.warn);
+      vegaEmbed("#vis2", spec2, { mode: "vega-lite" , renderer: "svg"}).then(console.log).catch(console.warn);
     </script>
 </body>
 
