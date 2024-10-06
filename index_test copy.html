@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+  <link rel="stylesheet" href="css/styles2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="header">
+    <h1>Data Visualization 2</h1>
+    <h2>Pong Vei Xhen 33480982</h2>
+  </div>
+
+  <div class="container">
+    <div id="vis"></div>
+  </div>
+  <script>
+    const spec2 = {
+
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": { "text": "Retail Prices over Time" },
+
+      "data": {
+        "url": "data/retail-prices.csv",
+        "format": { "type": "csv" }
+      },
+      "transform": [
+        {
+          "fold": [
+            "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+            "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+            "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+          ],
+          "as": ["year", "price"]
+        },
+        {
+          "calculate": "datetime(toNumber(datum.year), 1, 1)",  // Convert year string to date
+          "as": "year_date"
+        },
+        {
+          "calculate": "format(datum.price, '.2f') + ' US dollars per kilogram'",
+          "as": "pricetooltip"
+        }
+      ],
+
+
+      "width": 300,
+      "height": 100,
+      "mark": {
+        "type": "area",
+        "interpolate": "linear",
+        "line": { "interpolate": "monotone" }
+      },
+      "encoding": {
+        "facet": {
+          "field": "retail_prices",
+          "type": "nominal",
+          "columns": 3,
+          "title": "Country"
+        },
+        "x": {
+          "field": "year_date",
+          "type": "temporal",
+          "axis": {
+            "format": "%Y"
+          },
+          "title": "Year"
+        },
+        "y": {
+          "field": "price",
+          "type": "quantitative",
+          "axis": { "grid": false }
+        },
+        "color": {
+          "field": "retail_prices",
+          "type": "nominal",
+          "scale": {
+            "scheme": "category20c"
+          },
+          "title": "Country"
+        },
+        "tooltip": [
+          { "field": "year_date", "type": "temporal", "title": "Year", "format": "%Y" },
+          { "field": "pricetooltip", "title": "Price" }
+        ]
+      },
+      "columns": 2
+    };
+    vegaEmbed("#vis", spec2, { mode: "vega-lite", renderer: "svg" }).then(console.log).catch(console.warn);
+  </script>
+</body>
+
+</html>

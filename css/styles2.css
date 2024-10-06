@@ -1,0 +1,120 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Or any other modern sans-serif font like 'Open Sans', 'Lato', etc. */
+    background-color: #f8f9fa;
+    /* Light gray background - keep or change as desired */
+    background-color: #ffffff;
+    /* Light gray background - keep or change as desired */
+    color: #333;
+    /* Darker text color for better contrast */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: center;
+    /* Center content horizontally */
+    min-height: 100vh;
+}
+
+.header {
+    color: rgb(25, 9, 202);
+    /* White text for the header */
+    color: #1932c8;
+    padding: 20px;
+    text-align: center;
+    /* Center the header text */
+    width: 100%;
+    /* Full width header */
+    box-sizing: border-box;
+    /* Include padding in the width */
+}
+
+.header h1 {
+    font-family: "Bebas Neue", sans-serif;
+    /* Use Bebas Neue for the header */
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    /* all caps */
+    font-style: normal;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+}
+
+#vis {
+	width: 100%; 
+  }
+
+
+.container {
+    background-color: white;
+    background-color: #ffffff;
+    /* Light gray background - keep or change as desired */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Softer, larger shadow */
+    max-width: 90%;
+    /* Make the container responsive */
+    min-width: 1000px;
+    /* Set a max-width for large screens */
+    margin: 20px auto;
+    /* Top/bottom margin and center horizontally */
+    box-sizing: border-box;
+}
+
+
+/* Vega-Lite Specific Styles */
+#vis2 {
+    width: 100%;
+}
+
+
+.vega-embed {
+    border: none;
+}
+
+.vega-lite .mark-rect {
+    stroke: none;
+}
+
+.vega-tooltip {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.vega-tooltip-container div {
+    margin-bottom: 5px;
+}
+
+.vega-bindings {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vega-bind span {
+    font-size: 16px;
+}
+
+/* ... (rest of your Vega tooltip and other styles) */
+
+
+/* Optional: Add some margin to the top for the header */
+.container {
+    margin-top: 30px;
+    /* Adjust as needed */
+}
+
+
+/* Accent colors for buttons or other elements */
+.accent-button {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
