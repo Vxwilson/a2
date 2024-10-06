@@ -21,8 +21,22 @@
     <div id="vis"></div>
   </div>
   <script>
+
+    const smallmultiplescheme = ['#00429d', '#2e59a8', '#4771b2', '#5d8abd', '#73a2c6', '#8abccf', '#a5d5d8', '#c5eddf', '#ffdec7', '#ffbcaf', '#ff9895', '#f4777f', '#e4576b', '#cf3759', '#b41648', '#93003a']
+    const streamGraphScheme = ['#7c739b', '#a57ca5', '#cc86a4', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84']
+    const mapGraphScheme = ['#ffffff00', '#8279a5', '#a57ca5', '#cc86a4', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84']
+    const streamGraphScheme2 = ['#ffdf84', '#f9c57b', '#efad76', '#e19672', '#cf8270', '#b96f6d', '#a25f68', '#885062']
+    const streamGraphScheme3 = ['#596988', '#7c739b', '#a57ca5', '#cc86a4', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84', '#f9c57b', '#efad76', '#e19672', '#cf8270', '#b96f6d', '#a25f68', '#885062']
+    const lineChartScheme = ['#596988', '#a57ca5', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84']
+    const blueHueScheme = ['#c1e7ff', '#a7cfe9', '#8eb8d3', '#75a1be', '#5d8ba9', '#437594', '#296080', '#004c6d']
+    const coffeeScheme = ['#fff6df', '#f4e6cd', '#e9d6bb', '#dfc6aa', '#d5b699', '#cba78a', '#c2977b', '#c2977b', '#c2977b', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e']
+    const blueyellowScheme = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
+    const blueyellowScheme2 = ['#003f5c', '#7a5195', '#ef5675', '#ffa600']
+    const greenScheme = ['#5d7e9c', '#6098b3', '#65b2c5', '#72ccd2', '#89e6db', '#aaffdf']
+
     const spec2 = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      // add color scheme to the spec
       "config": {
         "style": {
         },
@@ -30,7 +44,7 @@
         "title": {
           "font": "Roboto",
           "fontSize": 18,
-          "fontWeight": "bold",
+          "fontWeight": "semibold",
           "color": "#333", // Dark gray title color
           "color": "#1932c8"
         },
@@ -38,12 +52,14 @@
           "labelFont": "Roboto",
           "titleFont": "Roboto",
           "titleFontSize": 12,
+          "titleFontWeight": "normal",
           "labelColor": "#1932c8",
           "titleColor": "#1932c8"
         },
         "legend": {
           "labelFont": "Roboto",
           "titleFont": "Roboto",
+          "titleFontWeight": "normal",
           "labelColor": "#1932c8",
           "titleColor": "#1932c8"
         },
@@ -54,13 +70,7 @@
           "color": "#1932c8", // Default color for all marks
         }
       },
-      "data": {
-        // "url": "data/total-production.csv",
-        "url": "data/exports-calendar-year.csv",
-        "format": { "type": "csv" },
-        "name": "exports_data"
 
-      },
       "params": [
         {
           "name": "yearSelection",
@@ -74,40 +84,47 @@
           }
         }
       ],
-      "transform": [
-        {
-          "fold": [
-            "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
-            "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
-            "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
-          ],
-          "as": ["year", "export"]
-        },
 
-        {
-          "filter": "toNumber(datum.year) == yearSelection"
-        },
-        {
-          "calculate": "toNumber(datum.export) > 0",
-          "as": "hasExport"
-        },
-        {
-          "filter": "datum.hasExport == true"
-        },
-      ],
       "vconcat": [
         {
           "width": 1000,
           "height": 300,
           "title": { "text": { "signal": "'Coffee Exports in ' + yearSelection" } }, // Use the dynamic title
+          "data": {
+            // "url": "data/total-production.csv",
+            "url": "data/exports-calendar-year.csv",
+            "format": { "type": "csv" },
+            "name": "exports_data"
 
+          },
+          "transform": [
+            {
+              "fold": [
+                "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+                "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+                "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+              ],
+              "as": ["year", "export"]
+            },
+
+            {
+              "filter": "toNumber(datum.year) == yearSelection"
+            },
+            {
+              "calculate": "toNumber(datum.export) > 0",
+              "as": "hasExport"
+            },
+            {
+              "filter": "datum.hasExport == true"
+            },
+          ],
           "layer": [
             {
 
               // string for export tooltip
               "transform": [
                 {
-                  "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee.'",
+                  "calculate": "format(datum.export * 1000 / 1000000, '.3f') + ' million bags (60-kg) of coffee.'",
                   "as": "exporttooltip"
                 },
                 {
@@ -120,13 +137,14 @@
                 "type": "bar",
                 "tooltip": true,
                 "cornerRadiusEnd": 4,
-                "cursor": "pointer"
+                "cursor": "pointer",
+                "stroke": "#1932c8",
               },
               "encoding": {
                 "y": {
                   "field": "export",
                   "type": "quantitative",
-                  "title": "Exports (thousand 60kg bags)"
+                  "title": "Exports (thousand 60kg bags)",
                   // "scale": { "type": "log" }
                 },
                 "x": {
@@ -144,11 +162,13 @@
                   "field": "export",
                   "type": "quantitative",
                   "scale": {
-                    // "scheme": "warmgreys"
-                    // "scheme": "lightorange"
-                    "scheme": "warmgreys"
+                    // "range": coffeeScheme
+                    "range": streamGraphScheme
                   },
-                  // "legend": null
+                  "strokeWidth": {
+                    "value": 0
+                  },
+                  "title": "Exports (thousand 60kg bags)"
                 },
                 "tooltip": [
                   { "field": "exports", "type": "nominal", "title": "Country" },
@@ -162,7 +182,7 @@
                 { "calculate": "toNumber(datum.export)", "as": "export" },
                 { "aggregate": [{ "op": "max", "field": "export", "as": "max_export" }] },
                 {
-                  "calculate": "split('Brazil exported ' + format(datum.max_export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee,\\nleading first place at a huge margin.', '\\n')",
+                  "calculate": "split('Brazil alone exported ' + format(datum.max_export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee,\\nleading first place at a huge margin.', '\\n')",
                   "as": "formatted_export"
                 }
               ],
@@ -173,11 +193,13 @@
                 "format": ".2f",
                 "dx": 30,
                 "dy": 5,
-                "fontSize": 13,
-                "fontWeight": "bold",
+                "fontSize": 11,
+                "fontWeight": "regular",
+                "fontStyle": "italic",
                 // "color": "#333",
                 "color": "#1932c8",
                 "lineBreak": "\\n"
+
               },
               "encoding": {
                 "text": { "field": "formatted_export" },
@@ -203,8 +225,9 @@
                 "format": ".2f",
                 "dx": 650,
                 "dy": 230,
-                "fontSize": 13,
-                "fontWeight": "bold",
+                "fontSize": 11,
+                "fontStyle": "italic",
+                "fontWeight": "regular",
                 // "color": "#333",
                 "color": "#1932c8",
               },
@@ -283,14 +306,182 @@
         //   }
         // },
         // 
+        // {
+        //   "title": { "text": "World Map" },
+        //   "width": 1000,
+        //   "height": 350,
+        //   "data": {
+        //     "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        //     "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+        //   },
+        //   "projection": { "type": "equalEarth" },
+        //   "layer": [
+        //     {
+        //       "data": { "graticule": true },
+        //       "mark": { "type": "geoshape", "stroke": "lightgray", "strokeWidth": 0.5 }
+        //     },
+        //     {
+        //       "transform": [
+        //         {
+        //           "calculate": "'No production'",
+        //           "as": "note"
+        //         }
+        //       ],
+        //       "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
+        //       "encoding": {
+        //         "tooltip": [
+        //           { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+        //           { "field": "note", "type": "nominal" }
+        //         ]
+        //       }
+        //     },
+        //     {
+        //       "transform": [
+        //         {
+        //           "lookup": "properties.NAME",
+        //           "from": {
+        //             "data": {
+        //               "url": "data/exports-calendar-year.csv"
+        //             },
+        //             "key": "exports",
+        //             "fields": [
+        //               "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+        //               "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+        //               "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+        //             ],
+        //           }
+        //         },
+        //         {
+        //           "calculate": "datum['' + yearSelection]",
+        //           "as": "Count"
+        //         },
+        //         {
+        //           "calculate": "format(datum['' + yearSelection] * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee.'",
+        //           "as": "exporttooltip"
+        //         }
+        //       ],
+        //       "mark": {
+        //         "type": "geoshape", "stroke": "white", "cursor": "pointer",
+        //         "stroke": "#1932c8",
+        //         "strokeWidth": 0.5
+        //       },
+        //       "encoding": {
+        //         "color": {
+        //           "field": "Count",
+        //           "type": "quantitative",
+        //           "scale": {
+        //             // "scheme": "warmgreys"
+        //             "range": mapGraphScheme
+        //           },
+        //           "legend": {
+        //             "title": "Exports (thousand 60kg bags)",
+        //             "disable": true
+        //           }
+        //         },
+        //         "tooltip": [
+        //           { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+        //           {
+        //             "field": "exporttooltip", "title": "Exports"
+        //           }
+        //         ]
+        //       }
+        //     },
+        //   ]
+        // },
+        {
+          "title": { "text": "Who's Importing the Coffee?" },
+
+          "width": 1000,
+          "height": 350,
+
+          "data": {
+            "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+            "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+          },
+          "projection": { "type": "equalEarth" },
+          "layer": [
+            {
+              "data": { "graticule": true },
+              "mark": { "type": "geoshape", "stroke": "lightgray", "strokeWidth": 0.5 }
+            },
+            {
+              "transform": [
+                {
+                  "calculate": "'No available data'",
+                  "as": "Note"
+                }
+              ],
+              "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
+              "encoding": {
+                "tooltip": [
+                  { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+                  { "field": "Note", "type": "nominal" }
+                ]
+              }
+            },
+            {
+              "transform": [
+                {
+                  "lookup": "properties.NAME",
+                  "from": {
+
+                    "data": {
+                      "url": "data/imports.csv"
+                    },
+                    "key": "imports",
+                    "fields": [
+                      "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+                      "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+                      "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+                    ],
+                  }
+                },
+                {
+                  "calculate": "datum['' + yearSelection]",
+                  "as": "Count"
+                },
+                {
+                  "calculate": "format(datum['' + yearSelection] * 1000 / 1000000, '.3f') + ' million bags (60-kg) of coffee.'",
+                  "as": "importtooltip"
+                }
+              ],
+              "mark": {
+                "type": "geoshape", "stroke": "white", "cursor": "pointer",
+                "stroke": "#1932c8",
+                "strokeWidth": 0.5
+              },
+              "encoding": {
+                "color": {
+                  "field": "Count",
+                  "type": "quantitative",
+                  "scale": {
+                    // "scheme": "warmgreys"
+                    "domain": [0, 0.001, 100, 500, 2000, 6000, 10000, 25000],
+                    "range": mapGraphScheme
+                  },
+                  "legend": {
+                    "title": "Imports (thousand 60kg bags)",
+                    "disable": true
+                  }
+                },
+                "tooltip": [
+                  { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+                  {
+                    "field": "importtooltip", "title": "imports"
+                  }
+                ]
+              }
+            },
+          ]
+        },
         {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
-          "title": { "text": "Top 10 Coffee Exporting Countries Over Time" },
+          "title": { "text": "Top 5 Coffee Exporting Countries Over Time" },
           "width": 1000,
           "height": 400,
           "data": {
-            "url": "data/exports_top10_yearly.csv",  // Updated data source
+            "url": "data/exports_top5_yearly.csv",  // Updated data source
             "format": { "type": "csv" }
           },
           "transform": [
@@ -341,9 +532,9 @@
             },
             "color": {
               "field": "exports",
+              "title": "Exporting Country",
               "scale": {
-                "scheme": "category20c"
-                // "scheme": "category20b"
+                "range": streamGraphScheme3
               }
             },
 
@@ -351,23 +542,22 @@
               "condition": [
                 {
                   "param": "selectedCountry",
-                  // "empty": false,
                   "value": 1
                 },
-                {
-                  "param": "hoveredCountry",
-                  // "empty": false, 
-                  "value": 0.8
-                },
+                // {
+                //   "param": "hoveredCountry",
+                //   // "empty": false, 
+                //   "value": 0.8
+                // },
               ],
               "value": 0.6 // Default opacity
             },
             "strokeWidth": {
               "condition": [
                 // { "param": "selectedCountry", "value": 2 },
-                { "param": "hoveredCountry", "value": 2.5, "empty": false }
+                { "param": "hoveredCountry", "value": 2, "empty": false }
               ],
-              "value": 0
+              "value": 1.25
             },
 
             "tooltip": [
@@ -410,7 +600,10 @@
                 }
               ],
               // "mark": "line",
-              "mark": { "type": "line", "size": 2 },
+              "mark": {
+                "type": "line", "size": 1.5, "interpolate": "basis",
+                "cursor": "pointer",
+              },
               "encoding": {
                 "x": {
                   "field": "date",
@@ -427,7 +620,13 @@
                 "color": {
                   "field": "Coffee Type",
                   "type": "nominal",
-                  "title": "Coffee Type"
+                  "title": "Coffee Type",
+                  "scale": {
+                    // "scheme": "category20c"
+                    // "range": blueyellowScheme2
+                    // "range": greenScheme
+                    "range": lineChartScheme
+                  }
                 },
                 "tooltip": [
                   { "field": "date", "type": "temporal", "title": "Date", "format": "%b %Y" },
@@ -464,7 +663,7 @@
                 }
               ],
               // "mark": "line",
-              "mark": { "type": "line", "size": 2 },
+              "mark": { "type": "line", "size": 1.5, "interpolate": "basis", "cursor": "pointer" },
               "encoding": {
                 "x": {
                   "field": "date",
@@ -497,8 +696,8 @@
           // small multiples of bar chart of prices-paid-to-growers
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
           "title": { "text": "Prices Paid to Growers Over Time" },
-          "width": 300,
-          "height": 75,
+          // "width": 300,
+          // "height": 20,
           "data": {
             "url": "data/prices-paid-to-growers.csv",
             "format": { "type": "csv" }
@@ -533,21 +732,18 @@
             "facet": {
               "field": "prices_paid_to_growers",
               "type": "nominal",
-              // "columns": 2,
               "title": "Country"
             },
             "spec": {
               "width": 300,
-              "height": 100,
+              "height": 60,
               "encoding": {
 
                 "x": {
                   "field": "year_date",
                   "type": "temporal",
                   "axis": {
-                    // "domain": false,
                     "format": "%Y",
-                    // "tickSize": 0
                   },
                   "scale": { "zero": false, "nice": false },
                   "title": "Year"
@@ -555,15 +751,14 @@
                 "y": {
                   "field": "price",
                   "type": "quantitative",
-                  // "axis": { "grid": false },
-                  "scale": { "domain": [0, 2.5] }
-                  // "stack": "center"
+                  "scale": { "domain": [0, 3] },
+                  "title": "Price"
                 },
                 "color": {
                   "field": "prices_paid_to_growers",
                   "type": "nominal",
                   "scale": {
-                    "scheme": "category20c"
+                    "range": blueyellowScheme
                   },
                   "title": "Country"
                 },
@@ -574,30 +769,41 @@
               },
               "layer": [
                 {
-                  "mark": { "type": "area", "clip": true, "orient": "vertical", "opacity": 0.6 }
+                  "mark": {
+                    "type": "line", "clip": true, "orient": "vertical", "opacity": 1,
+                    "cursor": "pointer",
+                    "stroke": "#1932c8",
+                    "strokeWidth": 1.25
+                  }
                 },
                 {
-                  "transform": [{ "calculate": "datum.price - 2.5", "as": "ny" }],
-                  "mark": { "type": "area", "clip": true, "orient": "vertical" },
+
+                  "mark": {
+                    "type": "area", "clip": true, "orient": "vertical", "opacity": 0.6,
+                    "cursor": "pointer",
+                    "stroke": "#1932c8",
+                    "strokeWidth": 1.25
+                  }
+                },
+                {
+                  "transform": [{ "calculate": "datum.price - 3", "as": "ny" }],
+                  "mark": {
+                    "type": "area", "clip": true, "orient": "vertical",
+                    "cursor": "pointer",
+                  },
                   "encoding": {
 
                     "y": {
                       "field": "ny", "type": "quantitative",
-                      "scale": { "domain": [0, 2.5] }
+                      "scale": { "domain": [0, 3] }
                     },
-                    "opacity": { "value": 0.3 }
+                    "opacity": { "value": 0.7 }
                   }
                 }
               ],
             },
             // add layer for horizon graph
           }],
-          "config": {
-            "area": {
-              "interpolate": "monotone",
-              "line": { "interpolate": "monotone" }
-            }
-          }
         },
 
         {
@@ -629,11 +835,12 @@
 
 
           "width": 300,
-          "height": 100,
+          "height": 80,
           "mark": {
             "type": "area",
-            "interpolate": "linear",
-            "line": { "interpolate": "monotone" }
+            "cursor": "pointer",
+            "stroke": "#1932c8",
+            "strokeWidth": 1.25
           },
           "encoding": {
             "facet": {
@@ -659,7 +866,7 @@
               "field": "retail_prices",
               "type": "nominal",
               "scale": {
-                "scheme": "category20c"
+                "range": smallmultiplescheme
               },
               "title": "Country"
             },
@@ -669,73 +876,7 @@
             ]
           }
 
-        },
-        // {
-        // find use for another data
-        //   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        //   "title": { "text": "May be useful for another data" },
-        //   "width": 300,
-        //   "height": 150,  // Adjust height as needed
-        //   "data": {
-        //     "url": "data/prices-paid-to-growers.csv",
-        //     "format": { "type": "csv" }
-        //   },
-        //   "transform": [
-        //     {
-        //       "fold": [
-        //         "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
-        //         "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
-        //         "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
-        //       ],
-        //       "as": ["year", "price"]
-        //     },
-        //     {
-        //       "calculate": "datetime(toNumber(datum.year), 1, 1)",
-        //       "as": "year_date"
-        //     },
-        //     {
-        //       "calculate": "format(datum.price, '.2f') + ' US dollars per kilogram'",
-        //       "as": "pricetooltip"
-        //     }
-        //   ],
-        //   "mark": {
-        //     "type": "area",
-        //     "interpolate": "linear",
-        //     "line": { "interpolate": "monotone" }
-        //   },
-        //   "encoding": {
-        //     "x": {
-        //       "field": "year_date",
-        //       "type": "temporal",
-        //       "axis": { "format": "%Y", "title": "Year" }
-        //     },
-        //     "y": {
-        //       "field": "price",
-        //       "type": "quantitative",
-        //       "axis": { "grid": false }
-        //     },
-        //     "color": {
-        //       "field": "prices_paid_to_growers",
-        //       "type": "nominal",
-        //       "scale": { "scheme": "category20c" },
-        //       "title": "Country"
-        //     },
-        //     "tooltip": [
-        //       { "field": "year_date", "type": "temporal", "title": "Year", "format": "%Y" },
-        //       { "field": "pricetooltip", "title": "Price" }
-        //     ]
-        //   },
-        //   "repeat": {  // This creates the small multiples
-        //     "column": "prices_paid_to_growers"
-        //   },
-        //   "columns": 2, //  2 columns
-        //   "spec": {
-        //     "mark": "area",
-        //     "encoding": { "y": { "axis": null } } // remove y-axis from other than leftmost chart
-        //   }
-
-        // }
-
+        }
       ]
     };
     vegaEmbed("#vis", spec2, { mode: "vega-lite", renderer: "svg" }).then(console.log).catch(console.warn);

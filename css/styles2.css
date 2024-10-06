@@ -40,10 +40,23 @@ body {
     font-weight: 400;
 }
 
+.header h2{
+    font-family: "Roboto", sans-serif;
+    /* Use Bebas Neue for the header */
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    /* all caps */
+    font-style: normal;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+}
 #vis {
 	width: 100%; 
   }
 
+.facet-title{
+    color:rgb(25, 9, 202);
+}
 
 .container {
     background-color: white;
@@ -71,6 +84,7 @@ body {
 
 .vega-embed {
     border: none;
+    
 }
 
 .vega-lite .mark-rect {
@@ -94,6 +108,14 @@ body {
     align-items: center;
     gap: 10px;
 }
+
+
+.vega-bind {
+	position: absolute;
+	top: 0px; /* Adjust as needed */
+    color:rgb(25, 9, 202);
+
+  }
 
 .vega-bind span {
     font-size: 16px;

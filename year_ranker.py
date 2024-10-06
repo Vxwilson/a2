@@ -16,8 +16,8 @@ def rank_within_year(group):
 
 df_ranked = df_melted.groupby('year').apply(rank_within_year)
 
-# Filter for top 10 
-df_top10 = df_ranked[df_ranked['rank'] <= 10]
+# Filter for top 5
+df_top10 = df_ranked[df_ranked['rank'] <= 5]
 
 # Export the processed data
-df_top10.to_csv("data/exports_top10_yearly.csv", index=False)
+df_top10.to_csv("data/exports_top5_yearly.csv", index=False)
