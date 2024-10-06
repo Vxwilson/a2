@@ -1,11 +1,11 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
     /* Or any other modern sans-serif font like 'Open Sans', 'Lato', etc. */
     background-color: #f8f9fa;
     /* Light gray background - keep or change as desired */
     background-color: #ffffff;
     /* Light gray background - keep or change as desired */
-    color: #333;
+    color: #1932c8;
     /* Darker text color for better contrast */
     margin: 0;
     display: flex;
@@ -23,62 +23,77 @@ body {
     padding: 20px;
     text-align: center;
     /* Center the header text */
-    width: 100%;
+    margin-top: 50px;
+    width: 500px;
+    /* max-width: 50%; */
     /* Full width header */
     box-sizing: border-box;
     /* Include padding in the width */
 }
 
+/* on mobile */
+@media (max-width: 800px) {
+    .header {
+        width: 90%;
+        /* Full width header */
+    }
+}
+
+.header p{
+/* align left */
+    font-family: 'Helvetica Neue', sans-serif;  
+    text-align: left;
+    font-size: 0.95em;
+    margin-bottom: 0.5em;
+    font-style: normal;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+
+    font-weight: 400;
+}
+
 .header h1 {
     font-family: "Bebas Neue", sans-serif;
-    /* Use Bebas Neue for the header */
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-    /* all caps */
+    font-size: 2.8em;
+    margin: 10 auto 10;
     font-style: normal;
-    /* text-transform: uppercase; */
     font-weight: 400;
 }
 
 .header h2{
-    font-family: "Roboto", sans-serif;
-    /* Use Bebas Neue for the header */
-    font-size: 1em;
+    font-family: 'Helvetica Neue', sans-serif;
+    /* serif font */
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    font-size: 0.8em;
     margin-bottom: 0.5em;
-    /* all caps */
     font-style: normal;
-    /* text-transform: uppercase; */
     font-weight: 400;
+    /* color: #525b74; */
 }
-#vis {
-	width: 100%; 
-  }
+
+.header span{
+    display: flex;
+    justify-content: center;
+}
+
+/* margin for first header h2 */
+.header h2:nth-of-type(1){
+    margin-right: 50px;
+}
 
 .facet-title{
-    color:rgb(25, 9, 202);
+    /* color:rgb(25, 9, 202); */
 }
 
 .container {
     background-color: white;
     background-color: #ffffff;
-    /* Light gray background - keep or change as desired */
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    /* Softer, larger shadow */
-    max-width: 90%;
-    /* Make the container responsive */
-    min-width: 1000px;
-    /* Set a max-width for large screens */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    max-width: 92%;
+    min-width: 80%;
     margin: 20px auto;
-    /* Top/bottom margin and center horizontally */
     box-sizing: border-box;
-}
-
-
-/* Vega-Lite Specific Styles */
-#vis2 {
-    width: 100%;
 }
 
 
@@ -112,26 +127,27 @@ body {
 
 .vega-bind {
 	position: absolute;
-	top: 0px; /* Adjust as needed */
-    color:rgb(25, 9, 202);
+	top: 13px;
+    left: 0px;
+    /* color:rgb(25, 9, 202); */
 
   }
 
 .vega-bind span {
-    font-size: 16px;
+    font-size: 12px;
 }
 
-/* ... (rest of your Vega tooltip and other styles) */
+.vega-bind{
+    width: 100%;
+    font-family: 'Helvetica Neue', sans-serif;
+    /* font-size: 12px; */
+    /* color:rgb(25, 9, 202); */
+}
 
-
-/* Optional: Add some margin to the top for the header */
 .container {
     margin-top: 30px;
-    /* Adjust as needed */
 }
 
-
-/* Accent colors for buttons or other elements */
 .accent-button {
     background-color: #2196F3;
     color: white;
@@ -139,4 +155,53 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+/* modular divs */
+
+.spacer50{
+    width: 50%;
+}
+
+.vis {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1em;
+
+    /* border */
+    /* border: 1px solid #1932c8; */
+}
+
+#barChartExports{
+    width: 50%;
+    height: 500px;
+}
+
+#mapImports{
+    width: 50%;
+    height: 500px;
+    padding-top: 10px;
+}
+
+#streamGraphTop5{
+    width: 50%;
+}
+
+#lineChartPrices{
+    width: 42%;
+}
+
+ #lineChartPriceDiff{
+    width: 50%;
+}
+
+.horizontalcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
 }

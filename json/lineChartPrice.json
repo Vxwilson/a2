@@ -1,0 +1,92 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "title": {
+        "text": "Coffee Prices Over Time"
+    },
+    "width": 580,
+    "height": 350,
+    "data": {
+        "url": "data/indicator-prices.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "calculate": "timeParse(datum.months, '%m/%Y')",
+            "as": "date"
+        },
+        {
+            "fold": [
+                "Colombian Milds",
+                "Other Milds",
+                "Brazilian Naturals",
+                "Robustas"
+            ],
+            "as": [
+                "Coffee Type",
+                "Price"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "size": 1.5,
+        "interpolate": "basis",
+        "cursor": "pointer"
+    },
+    "encoding": {
+        "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month/Year",
+            "axis": {
+                "format": "%b %Y"
+            }
+        },
+        "y": {
+            "field": "Price",
+            "type": "quantitative",
+            "title": "Price (US dollars per kilogram)",
+            "scale": {
+                "zero": false
+            }
+        },
+        "color": {
+            "field": "Coffee Type",
+            "type": "nominal",
+            "title": "Coffee Type",
+            "scale": {
+                "range": [
+                    "#596988",
+                    "#a57ca5",
+                    "#ec939c",
+                    "#ffa78f"
+                ]
+            },
+            "legend": {
+                "disable": true
+            }
+        },
+        "tooltip": [
+            {
+                "field": "date",
+                "type": "temporal",
+                "title": "Date",
+                "format": "%b %Y"
+            },
+            {
+                "field": "Coffee Type",
+                "type": "nominal",
+                "title": "Coffee Type"
+            },
+            {
+                "field": "Price",
+                "type": "quantitative",
+                "title": "Price",
+                "format": ".2f"
+            }
+        ]
+    }
+}

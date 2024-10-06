@@ -1,0 +1,122 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Top 5 Coffee Exporting Countries Over Time"
+    },
+    "width": 600,
+    "height": 300,
+    "data": {
+      "url": "data/exports_top5_yearly.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {
+        "calculate": "format(datum.export * 1000 / 1000000, '.2f') + ' million bags'",
+        "as": "exporttooltip"
+      }
+    ],
+    "params": [
+      {
+        "name": "hoveredCountry",
+        "select": {
+          "type": "point",
+          "fields": ["exports"],
+          "on": "mouseover"
+        }
+      },
+      {
+        "name": "selectedCountry",
+        "select": {
+          "type": "point",
+          "fields": ["exports"]
+        }
+      }
+    ],
+    "mark": {
+      "type": "area",
+      "stroke": "#1932c8",
+      "cursor": "pointer"
+    },
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "temporal",
+        "axis": {
+          "domain": false,
+          "format": "%Y",
+          "tickSize": 0
+        }
+      },
+      "y": {
+        "field": "export",
+        "type": "quantitative",
+        "axis": null,
+        "stack": "center"
+      },
+      "color": {
+        "field": "exports",
+        "title": "Exporting Country",
+        "scale": {
+          "range": [
+            "#7c739b",
+            "#a57ca5",
+            "#cc86a4",
+            "#ec939c",
+            "#ffa78f",
+            "#ffc184",
+            "#ffdf84",
+            "#f9c57b",
+            "#efad76",
+            "#e19672",
+            "#cf8270",
+            "#b96f6d",
+            "#a25f68",
+            "#885062"
+          ]
+        }
+      },
+      "opacity": {
+        "condition": [
+          {
+            "param": "selectedCountry",
+            "value": 1
+          },
+          {
+            "param": "hoveredCountry",
+            "value": 0.8,
+            "empty": false
+          }
+        ],
+        "value": 0.6
+      },
+      "strokeWidth": {
+        "condition": [
+          {
+            "param": "hoveredCountry",
+            "value": 2,
+            "empty": false
+          }
+        ],
+        "value": 1.25
+      },
+      "tooltip": [
+        {
+          "field": "exports",
+          "type": "nominal",
+          "title": "Country"
+        },
+        {
+          "field": "year",
+          "type": "temporal",
+          "title": "Year",
+          "format": "%Y"
+        },
+        {
+          "field": "exporttooltip",
+          "title": "Total Export"
+        }
+      ]
+    }
+  }

@@ -1,0 +1,147 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Prices Paid to Growers Over Time"
+    },
+    "data": {
+      "url": "data/prices-paid-to-growers.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {
+        "fold": [
+          "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
+          "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+          "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"
+        ],
+        "as": [
+          "year",
+          "price"
+        ]
+      },
+      {
+        "calculate": "datetime(toNumber(datum.year), 1, 1)",
+        "as": "year_date"
+      },
+      {
+        "calculate": "format(datum.price, '.2f') + ' US dollars per kilogram'",
+        "as": "pricetooltip"
+      }
+     
+    ],
+    "vconcat": [
+      {
+        "columns": 3,
+        "facet": {
+          "field": "prices_paid_to_growers",
+          "type": "nominal",
+          "title": "Country"
+        },
+        "spec": {
+          "width": 300,
+          "height": 60,
+          "encoding": {
+            "x": {
+              "field": "year_date",
+              "type": "temporal",
+              "axis": {
+                "format": "%Y"
+              },
+              "scale": {
+                "zero": false,
+                "nice": false
+              },
+              "title": "Year"
+            },
+            "y": {
+              "field": "price",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  3
+                ]
+              },
+              "title": "Price"
+            },
+            "color": {
+              "field": "prices_paid_to_growers",
+              "type": "nominal",
+              "scale": {
+                "range": [
+                  "#003f5c",
+                  "#2f4b7c",
+                  "#665191",
+                  "#a05195",
+                  "#d45087",
+                  "#f95d6a",
+                  "#ff7c43",
+                  "#ffa600"
+                ]
+              },
+              "title": "Country"
+            },
+            "tooltip": [
+              {"field": "year_date", "type": "temporal", "title": "Year", "format": "%Y"},
+              {"field": "pricetooltip", "title": "Price"}
+            ]
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "line",
+                "clip": true,
+                "orient": "vertical",
+                "opacity": 1,
+                "cursor": "pointer",
+                "stroke": "#1932c8",
+                "strokeWidth": 1.25
+              }
+            },
+            {
+              "mark": {
+                "type": "area",
+                "clip": true,
+                "orient": "vertical",
+                "opacity": 0.6,
+                "cursor": "pointer",
+                "stroke": "#1932c8",
+                "strokeWidth": 1.25
+              }
+            },
+            {
+              "transform": [
+                {
+                  "calculate": "datum.price - 3",
+                  "as": "ny"
+                }
+              ],
+              "mark": {
+                "type": "area",
+                "clip": true,
+                "orient": "vertical",
+                "cursor": "pointer"
+              },
+              "encoding": {
+                "y": {
+                  "field": "ny",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [
+                      0,
+                      3
+                    ]
+                  }
+                },
+                "opacity": {
+                  "value": 0.7
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
