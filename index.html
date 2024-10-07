@@ -90,7 +90,7 @@
             .then(response => response.json())
             .then(configData => {
                 // fetch bar chart data 
-                fetch('json/barChartExports.json')
+                fetch('json/barChartExports_gray.json')
                     .then(response => response.json())
                     .then(spec => {
                         // Now configData contains the parsed JSON object

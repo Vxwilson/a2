@@ -238,11 +238,11 @@
           "filter": "datum.properties.NAME == 'Canada'"
         },
         {
-          "calculate": "-110",
+          "calculate": "-125",
           "as": "longitude"
         },
         {
-          "calculate": "60",
+          "calculate": "52",
           "as": "latitude"
         },
         {
@@ -260,7 +260,7 @@
       ],
       "mark": {
         "type": "rule",
-        "stroke": "black",
+        "color": "#525b74",
         "strokeWidth": 1
       },
       "encoding": {
@@ -341,7 +341,7 @@
       ],
       "mark": {
         "type": "rule",
-        "stroke": "black",
+        "color": "#525b74",
         "strokeWidth": 1
       },
       "encoding": {
@@ -400,11 +400,11 @@
           "filter": "datum.properties.NAME == 'Australia'"
         },
         {
-          "calculate": "133",
+          "calculate": "146",
           "as": "longitude"
         },
         {
-          "calculate": "-22",
+          "calculate": "-38",
           "as": "latitude"
         },
         {
@@ -422,7 +422,7 @@
       ],
       "mark": {
         "type": "rule",
-        "stroke": "black",
+        "color": "#525b74",
         "strokeWidth": 1
       },
       "encoding": {
@@ -503,7 +503,7 @@
       ],
       "mark": {
         "type": "rule",
-        "stroke": "black",
+        "color": "#525b74",
         "strokeWidth": 1
       },
       "encoding": {
