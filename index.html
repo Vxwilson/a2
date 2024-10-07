@@ -32,11 +32,12 @@
         <div class="container">
             <div class="horizontalcontainer">
                 <div id="barChartExports" class="vis"></div>
-                <div id="mapImports" class="vis"></div>
+                
+                <div id="streamGraphTop5" class="vis"></div>
             </div>
             <div class="horizontalcontainer">
-                <div id="streamGraphTop5" class="vis"></div>
-                <div class="vis spacer50"></div>
+                <div id="mapImports" class="vis"></div>
+                <!-- <div class="vis spacer50"></div> -->
             </div>
 
 
@@ -50,17 +51,22 @@
 
         <div class="footer">
             <div class="sources-disclaimers">
-                <h3>Sources</h3>
+                <h3>Dataset sources</h3>
                 <p>
                     <a href="https://population.un.org/wpp/Download/Standard/MostUsed/" target="_blank">UN Population
                         Data</a><br>
                     <a href="https://www.kaggle.com/datasets/yamaerenay/ico-coffee-dataset-worldwide?select=imports.csv"
-                        target="_blank">ICO Coffee Dataset</a>
+                        target="_blank">ICO Coffee Dataset</a><br>
+                    <a href="https://www.kaggle.com/datasets/nurielreuven/coffee-consumption-by-country-2022" target="_blank">Coffee Consumption by Country 
+                    </a>
                 </p>
                 <div class="divider"></div>
-                <h3>Notes</h3>
+                <h3>Footnotes</h3>
                 <ol>
                     <li>Due to partially incomplete data, the cloropleth map is unable to show import data for certain countries. For instance, it lacks data for most European countries form 2013 onwards.</li>
+                    <li>Based on a Coffee Association of Canada (CAC) <a href="https://coffeeassoc.com/wp-content/uploads/2021/06/CAC-Coffee-Drinking-Trends-INFOGRAPHIC-2018.pdf" target="_blank">infographic</a> in 2018.</li>
+                    <li>According to a 2016 Kaggle data processed <a href="https://www.kaggle.com/datasets/nurielreuven/coffee-consumption-by-country-2022" target="_blank">here</a>.</li>
+                    <li>2008. See <a href="https://collections.museumsvictoria.com.au/articles/2933" target="_blank">Meseums Victoria Collection's</a> article.</li>
                 </ol>
             </div>
         </div>
@@ -88,7 +94,7 @@
                     .then(response => response.json())
                     .then(spec => {
                         // Now configData contains the parsed JSON object
-                        spec.params = [sharedParam];
+                        // spec.params = [sharedParam];
                         vegaEmbed("#barChartExports", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
@@ -104,7 +110,7 @@
                     .then(response => response.json())
                     .then(spec => {
                         // Now configData contains the parsed JSON object
-                        spec.params = [sharedParam];
+                        // spec.params = [sharedParam];
                         vegaEmbed("#mapImports", spec, {
                             mode: "vega-lite",
                             renderer: "svg",

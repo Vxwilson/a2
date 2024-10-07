@@ -1,149 +1,494 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
   "title": {
-      "text": "Who's Drinking It?"
-    },
-    "width": 580,
-    "height": 350,
-    "data": {
-      "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-      "format": {
-        "type": "topojson",
-        "feature": "ne_110m_admin_0_countries"
+    "text": "Who's Drinking It?"
+  },
+  "width": 880,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_110m_admin_0_countries"
+    }
+  },
+  "params": [
+    {
+      "name": "yearSelection",
+      "value": 1990,
+      "bind": {
+        "input": "range",
+        "min": 1990,
+        "max": 2018,
+        "step": 1,
+        "name": "Year:"
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "graticule": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "lightgray",
+        "strokeWidth": 0.5
       }
     },
-    "projection": {
-      "type": "equalEarth"
+    {
+      "transform": [
+        {
+          "calculate": "'No available data'",
+          "as": "Note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white"
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.NAME",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "Note",
+            "type": "nominal"
+          }
+        ]
+      }
     },
-    "layer": [
-      {
-        "data": {
-          "graticule": true
-        },
-        "mark": {
-          "type": "geoshape",
-          "stroke": "lightgray",
-          "strokeWidth": 0.5
-        }
-      },
-      {
-        "transform": [
-          {
-            "calculate": "'No available data'",
-            "as": "Note"
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "data/imports.csv"
+            },
+            "key": "imports",
+            "fields": [
+              "1990",
+              "1991",
+              "1992",
+              "1993",
+              "1994",
+              "1995",
+              "1996",
+              "1997",
+              "1998",
+              "1999",
+              "2000",
+              "2001",
+              "2002",
+              "2003",
+              "2004",
+              "2005",
+              "2006",
+              "2007",
+              "2008",
+              "2009",
+              "2010",
+              "2011",
+              "2012",
+              "2013",
+              "2014",
+              "2015",
+              "2016",
+              "2017",
+              "2018"
+            ]
           }
-        ],
-        "mark": {
-          "type": "geoshape",
-          "fill": "lightgray",
-          "stroke": "white"
         },
-        "encoding": {
-          "tooltip": [
-            {
-              "field": "properties.NAME",
-              "type": "nominal",
-              "title": "Country"
-            },
-            {
-              "field": "Note",
-              "type": "nominal"
-            }
-          ]
+        {
+          "calculate": "datum[yearSelection]",
+          "as": "Count"
+        },
+        {
+          "calculate": "format(datum[yearSelection] * 1000 / 1000000, '.3f') + ' million bags (60-kg) of coffee.'",
+          "as": "importtooltip"
         }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "cursor": "pointer",
+        "stroke": "#1932c8",
+        "strokeWidth": 0.5
       },
-      {
-        "transform": [
-          {
-            "lookup": "properties.NAME",
-            "from": {
-              "data": {
-                "url": "data/imports.csv"
-              },
-              "key": "imports",
-              "fields": [
-                "1990",
-                "1991",
-                "1992",
-                "1993",
-                "1994",
-                "1995",
-                "1996",
-                "1997",
-                "1998",
-                "1999",
-                "2000",
-                "2001",
-                "2002",
-                "2003",
-                "2004",
-                "2005",
-                "2006",
-                "2007",
-                "2008",
-                "2009",
-                "2010",
-                "2011",
-                "2012",
-                "2013",
-                "2014",
-                "2015",
-                "2016",
-                "2017",
-                "2018"
-              ]
-            }
+      "encoding": {
+        "color": {
+          "field": "Count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              0.001,
+              100,
+              500,
+              2000,
+              6000,
+              10000,
+              25000
+            ],
+            "range": [
+              "#ffffff00",
+              "#8279a5",
+              "#a57ca5",
+              "#cc86a4",
+              "#ec939c",
+              "#ffa78f",
+              "#ffc184",
+              "#ffdf84"
+            ]
           },
-          {
-            "calculate": "datum[yearSelection]",
-            "as": "Count"
-          },
-          {
-            "calculate": "format(datum[yearSelection] * 1000 / 1000000, '.3f') + ' million bags (60-kg) of coffee.'",
-            "as": "importtooltip"
+          "legend": {
+            "title": "Imports (thousand 60kg bags)",
+            "disable": true
           }
-        ],
-        "mark": {
-          "type": "geoshape",
-          "cursor": "pointer",
-          "stroke": "#1932c8",
-          "strokeWidth": 0.5
         },
-        "encoding": {
-          "color": {
-            "field": "Count",
-            "type": "quantitative",
-            "scale": {
-              "domain": [0, 0.001, 100, 500, 2000, 6000, 10000, 25000],
-              "range": [
-                "#ffffff00",
-                "#8279a5",
-                "#a57ca5",
-                "#cc86a4",
-                "#ec939c",
-                "#ffa78f",
-                "#ffc184",
-                "#ffdf84"
-              ]
-            },
-            "legend": {
-              "title": "Imports (thousand 60kg bags)",
-              "disable": true
-            }
+        "tooltip": [
+          {
+            "field": "properties.NAME",
+            "type": "nominal",
+            "title": "Country"
           },
-          "tooltip": [
-            {
-              "field": "properties.NAME",
-              "type": "nominal",
-              "title": "Country"
-            },
-            {
-              "field": "importtooltip",
-              "title": "imports"
-            }
-          ]
+          {
+            "field": "importtooltip",
+            "title": "imports"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Canada'"
+        },
+        {
+          "calculate": "split('About 72 percent of Canadians \\n drank coffee yesterday [2].', '\\n')",
+          "as": "annotationText"
+        },
+        {
+          "calculate": "-180",
+          "as": "longitude"
+        },
+        {
+          "calculate": "36",
+          "as": "latitude"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 0,
+        "dy": 0
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "text": {
+          "field": "annotationText"
         }
       }
-    ]
-  }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Canada'"
+        },
+        {
+          "calculate": "-110",
+          "as": "longitude"
+        },
+        {
+          "calculate": "60",
+          "as": "latitude"
+        },
+        {
+          "calculate": "-180",
+          "as": "longitude2"
+        },
+        {
+          "calculate": "40",
+          "as": "latitude2"
+        },
+        {
+          "calculate": "datum.properties.NAME",
+          "as": "annotationText"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "longitude2": {
+          "field": "longitude2"
+        },
+        "latitude2": {
+          "field": "latitude2"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Malaysia'"
+        },
+        {
+          "calculate": "split('While Malaysia is positioned in the bean belt, \\n it\\'s soil is unsuitable for mass cultivation.', '\\n')",
+          "as": "annotationText"
+        },
+        {
+          "calculate": "180",
+          "as": "longitude"
+        },
+        {
+          "calculate": "22",
+          "as": "latitude"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 20,
+        "dy": 0
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "text": {
+          "field": "annotationText"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Malaysia'"
+        },
+        {
+          "calculate": "103",
+          "as": "longitude"
+        },
+        {
+          "calculate": "5",
+          "as": "latitude"
+        },
+        {
+          "calculate": "145",
+          "as": "longitude2"
+        },
+        {
+          "calculate": "16",
+          "as": "latitude2"
+        },
+        {
+          "calculate": "datum.properties.NAME",
+          "as": "annotationText"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "longitude2": {
+          "field": "longitude2"
+        },
+        "latitude2": {
+          "field": "latitude2"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Australia'"
+        },
+        {
+          "calculate": "split('In coffee capital Melbourne, even Starbucks \\ncouldn\\'t compete, closing many locations [4].', '\\n')",
+          "as": "annotationText"
+        },
+        {
+          "calculate": "180",
+          "as": "longitude"
+        },
+        {
+          "calculate": "-53",
+          "as": "latitude"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 0,
+        "dy": 0
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "text": {
+          "field": "annotationText"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Australia'"
+        },
+        {
+          "calculate": "133",
+          "as": "longitude"
+        },
+        {
+          "calculate": "-22",
+          "as": "latitude"
+        },
+        {
+          "calculate": "163",
+          "as": "longitude2"
+        },
+        {
+          "calculate": "-49",
+          "as": "latitude2"
+        },
+        {
+          "calculate": "datum.properties.NAME",
+          "as": "annotationText"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "longitude2": {
+          "field": "longitude2"
+        },
+        "latitude2": {
+          "field": "latitude2"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Finland'"
+        },
+        {
+          "calculate": "split('Finns takes the crown for their coffee \\nconsumption, averaging 4.6 cup a year [3]!', '\\n')",
+          "as": "annotationText"
+        },
+        {
+          "calculate": "145",
+          "as": "longitude"
+        },
+        {
+          "calculate": "69",
+          "as": "latitude"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 0,
+        "dy": 0
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "text": {
+          "field": "annotationText"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Finland'"
+        },
+        {
+          "calculate": "25",
+          "as": "longitude"
+        },
+        {
+          "calculate": "63",
+          "as": "latitude"
+        },
+        {
+          "calculate": "65",
+          "as": "longitude2"
+        },
+        {
+          "calculate": "66",
+          "as": "latitude2"
+        },
+        {
+          "calculate": "datum.properties.NAME",
+          "as": "annotationText"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude"
+        },
+        "latitude": {
+          "field": "latitude"
+        },
+        "longitude2": {
+          "field": "longitude2"
+        },
+        "latitude2": {
+          "field": "latitude2"
+        }
+      }
+    }
+  ]
+}

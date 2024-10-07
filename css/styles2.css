@@ -190,7 +190,7 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
 }
 
 #mapImports{
-    width: 50%;
+    width: 80%;
     height: 500px;
     padding-top: 10px;
 }
@@ -296,4 +296,5 @@ a:hover {
 .sources-disclaimers ol{
     list-style-position: inside;
     padding-left: 0;
+    font-size: 0.85em;
 }
