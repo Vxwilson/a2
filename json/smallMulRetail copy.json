@@ -1,0 +1,129 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Retail Prices over Time"
+    },
+    "data": {
+      "url": "data/retail-prices.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {
+        "fold": [
+          "1990",
+          "1991",
+          "1992",
+          "1993",
+          "1994",
+          "1995",
+          "1996",
+          "1997",
+          "1998",
+          "1999",
+          "2000",
+          "2001",
+          "2002",
+          "2003",
+          "2004",
+          "2005",
+          "2006",
+          "2007",
+          "2008",
+          "2009",
+          "2010",
+          "2011",
+          "2012",
+          "2013",
+          "2014",
+          "2015",
+          "2016",
+          "2017",
+          "2018"
+        ],
+        "as": [
+          "year",
+          "price"
+        ]
+      },
+      {
+        "calculate": "datetime(toNumber(datum.year), 1, 1)",
+        "as": "year_date"
+      },
+      {
+        "calculate": "format(datum.price, '.2f') + ' US dollars per kilogram'",
+        "as": "pricetooltip"
+      }
+    ],
+    "width": 280,
+    "height": 60,
+    "mark": {
+      "type": "area",
+      "cursor": "pointer",
+      "stroke": "#1932c8",
+      "strokeWidth": 1.25
+    },
+    "encoding": {
+      "facet": {
+        "field": "retail_prices",
+        "type": "nominal",
+        "columns": 4,
+        "title": "Country",
+        "align": "each"
+      },
+      "x": {
+        "field": "year_date",
+        "type": "temporal",
+        "axis": {
+          "format": "%Y"
+        },
+        "title": "Year"
+      },
+      "y": {
+        "field": "price",
+        "type": "quantitative",
+        "axis": {
+          "grid": false
+        }
+      },
+      "color": {
+        "field": "retail_prices",
+        "type": "nominal",
+        "scale": {
+          "range": [
+          
+            "#5d8abd",
+            "#73a2c6",
+            "#8abccf",
+            "#a5d5d8",
+            "#aed9c6",
+            "#c5eddf",
+            "#ffe8c7",
+            "#ffdec7",
+            "#ffbcaf",
+            "#ff9895",
+            "#f4777f",
+            "#e4576b",
+            "#cf3759",
+            "#b41648",
+            "#93003a"
+          ]
+          
+        },
+        "title": "Country"
+      },
+      "tooltip": [
+        {
+          "field": "year_date",
+          "type": "temporal",
+          "title": "Year",
+          "format": "%Y"
+        },
+        {
+          "field": "pricetooltip",
+          "title": "Price"
+        }
+      ]
+    }
+  }

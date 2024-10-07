@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "Coffee Price Difference to Average Over Time"
+        "text": "Price Difference to Average"
     },
     "width": 580,
     "height": 350,
@@ -29,107 +29,180 @@
             ]
         }
     ],
-    "mark": {
-        "type": "line",
-        "size": 1.5,
-        "interpolate": "basis",
-        "color": "#596988",
-        "cursor": "pointer"
-    },
-    "params": [
+    "layer": [
         {
-            "name": "hoveredCountry",
-            "select": {
-                "type": "point",
-                "fields": [
-                    "Coffee Type"
+            "params": [
+                {
+                    "name": "hoveredCountry",
+                    "select": {
+                        "type": "point",
+                        "fields": [
+                            "Coffee Type"
+                        ],
+                        "on": "mouseover"
+                    }
+                },
+                {
+                    "name": "selectedCountry",
+                    "select": {
+                        "type": "point",
+                        "fields": [
+                            "Coffee Type"
+                        ]
+                    }
+                }
+            ],
+            "mark": {
+                "type": "line",
+                "size": 1.5,
+                "interpolate": "basis",
+                "color": "#596988",
+                "cursor": "pointer"
+            },
+            "encoding": {
+                "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "title": "Month/Year",
+                    "axis": {
+                        "format": "%b %Y"
+                    }
+                },
+                "y": {
+                    "field": "Price",
+                    "type": "quantitative",
+                    "title": "Price Difference to Average (US dollars per kilogram)",
+                    "scale": {
+                        "zero": false
+                    }
+                },
+                "color": {
+                    "field": "Coffee Type",
+                    "type": "nominal",
+                    "title": "Coffee Type",
+                    "scale": {
+                        "range": [
+                            "#596988",
+                            "#a57ca5",
+                            "#ec939c",
+                            "#ffa78f"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "date",
+                        "type": "temporal",
+                        "title": "Date",
+                        "format": "%b %Y"
+                    },
+                    {
+                        "field": "Coffee Type",
+                        "type": "nominal",
+                        "title": "Coffee Type"
+                    },
+                    {
+                        "field": "Price",
+                        "type": "quantitative",
+                        "title": "Price",
+                        "format": ".2f"
+                    }
                 ],
-                "on": "mouseover"
+                "opacity": {
+                    "condition": [
+                        {
+                            "param": "selectedCountry",
+                            "value": 1
+                        },
+                        {
+                            "param": "hoveredCountry",
+                            "value": 0.8,
+                            "empty": false
+                        }
+                    ],
+                    "value": 0.3
+                },
+                "strokeWidth": {
+                    "condition": [
+                        {
+                            "param": "hoveredCountry",
+                            "value": 2,
+                            "empty": false
+                        }
+                    ],
+                    "value": 1.25
+                }
             }
         },
         {
-            "name": "selectedCountry",
-            "select": {
-                "type": "point",
-                "fields": [
-                    "Coffee Type"
-                ]
+            "transform": [
+                {
+                    "aggregate": [
+                        {
+                            "op": "sum",
+                            "field": "export",
+                            "as": "totalExport"
+                        }
+                    ]
+                },
+                {
+                    "calculate": "split('Robustas, often viewed as the less-desirable coffee \\nvariant, has always been the cheapest in price.', '\\n')",
+                    "as": "annotationText"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 0,
+                "dy": 0
+            },
+            "encoding": {
+                "text": {
+                    "field": "annotationText"
+                },
+                "y": {
+                    "value": 300
+                },
+                "x": {
+                    "value": 40
+                }
+            }
+        },
+        {
+            "transform": [
+                {
+                    "aggregate": [
+                        {
+                            "op": "sum",
+                            "field": "export",
+                            "as": "totalExport"
+                        }
+                    ]
+                },
+                {
+                    "calculate": "split('Robustas, often viewed as the less-desirable coffee \\nvariant, has always been the cheapest in price.', '\\n')",
+                    "as": "annotationText"
+                }
+            ],
+            "mark": {
+                "type": "rule",
+                "color": "#525b74"
+
+            },
+            "encoding": {
+                "y": {
+                    "value": 227
+                },
+                "x": {
+                    "value": 295
+                },
+                "y2": {
+                    "value": 290
+                },
+                "x2": {
+                    "value": 260
+                }
             }
         }
-    ],
-    "encoding": {
-        "x": {
-            "field": "date",
-            "type": "temporal",
-            "title": "Month/Year",
-            "axis": {
-                "format": "%b %Y"
-            }
-        },
-        "y": {
-            "field": "Price",
-            "type": "quantitative",
-            "title": "Price Difference to Average (US dollars per kilogram)",
-            "scale": {
-                "zero": false
-            }
-        },
-        "color": {
-            "field": "Coffee Type",
-            "type": "nominal",
-            "title": "Coffee Type",
-            "scale": {
-                "range": [
-                    "#596988",
-                    "#a57ca5",
-                    "#ec939c",
-                    "#ffa78f"
-                ]
-            }
-        },
-        "tooltip": [
-            {
-                "field": "date",
-                "type": "temporal",
-                "title": "Date",
-                "format": "%b %Y"
-            },
-            {
-                "field": "Coffee Type",
-                "type": "nominal",
-                "title": "Coffee Type"
-            },
-            {
-                "field": "Price",
-                "type": "quantitative",
-                "title": "Price",
-                "format": ".2f"
-            }
-        ],
-        "opacity": {
-            "condition": [
-              {
-                "param": "selectedCountry",
-                "value": 1
-              },
-              {
-                "param": "hoveredCountry",
-                "value": 0.8,
-                "empty": false
-              }
-            ],
-            "value": 0.3
-          },
-          "strokeWidth": {
-            "condition": [
-    
-              {
-                "param": "hoveredCountry",
-                "value": 2,
-                "empty": false
-              }
-            ],
-            "value": 1.25
-          }
-    }
+    ]
 }

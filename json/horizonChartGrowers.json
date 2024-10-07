@@ -33,14 +33,14 @@
     ],
     "vconcat": [
       {
-        "columns": 3,
+        "columns": 4,
         "facet": {
           "field": "prices_paid_to_growers",
           "type": "nominal",
           "title": "Country"
         },
         "spec": {
-          "width": 300,
+          "width": 280,
           "height": 60,
           "encoding": {
             "x": {
@@ -71,15 +71,16 @@
               "type": "nominal",
               "scale": {
                 "range": [
-                  "#003f5c",
-                  "#2f4b7c",
-                  "#665191",
-                  "#a05195",
+                  "#006898",
+                  "#3a5c99",
+                  "#6b5598",
+                  "#b169a8",
                   "#d45087",
                   "#f95d6a",
                   "#ff7c43",
                   "#ffa600"
                 ]
+                
               },
               "title": "Country"
             },
@@ -105,7 +106,7 @@
                 "type": "area",
                 "clip": true,
                 "orient": "vertical",
-                "opacity": 0.6,
+                "opacity": 0.7,
                 "cursor": "pointer",
                 "stroke": "#1932c8",
                 "strokeWidth": 1.25
@@ -136,7 +137,7 @@
                   }
                 },
                 "opacity": {
-                  "value": 0.7
+                  "value": 0.8
                 }
               }
             }

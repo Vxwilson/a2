@@ -228,6 +228,21 @@
             }
         },
         {
+            "transform": [
+                {
+                    "aggregate": [
+                        {
+                            "op": "sum",
+                            "field": "export",
+                            "as": "totalExport"
+                        }
+                    ]
+                },
+                {
+                    "calculate": "split('Robustas, often viewed as the less-desirable coffee \\nvariant, has always been the cheapest in price.', '\\n')",
+                    "as": "annotationText"
+                }
+            ],
             "mark": {
                 "type": "rule",
                 "color": "#525b74",
