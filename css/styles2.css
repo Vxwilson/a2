@@ -1,5 +1,5 @@
 body {
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', Roboto, sans-serif;
     /* Or any other modern sans-serif font like 'Open Sans', 'Lato', etc. */
     background-color: #f8f9fa;
     /* Light gray background - keep or change as desired */
@@ -43,7 +43,7 @@ body {
 
 .header p{
 /* align left */
-    font-family: 'Helvetica Neue', sans-serif;  
+font-family: 'Helvetica Neue', Roboto, sans-serif;
     text-align: left;
     font-size: 0.95em;
     margin-bottom: 0.5em;
@@ -62,7 +62,7 @@ body {
 }
 
 .header h2{
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', Roboto, sans-serif;
     /* serif font */
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
     font-size: 0.8em;
@@ -147,7 +147,7 @@ body {
 
 .vega-bind{
     width: 100%;
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', Roboto, sans-serif;
     /* font-size: 12px; */
     /* color:rgb(25, 9, 202); */
 }
@@ -230,7 +230,7 @@ body {
 
     margin-top: 0px; /* Add some spacing between container and footer */
 
-    font-family: 'Helvetica Neue', sans-serif;  
+    font-family: 'Helvetica Neue', Roboto, sans-serif; 
     text-align: left;
     font-size: 0.95em;
     margin-bottom: 0.5em;
