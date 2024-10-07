@@ -19,49 +19,53 @@
     <div class="header">
         <h1>The Worldwide Phenomenon of Coffee</h1>
         <span>
-        <h2>Prepared by Pong Vei Xhen 33480982</h2> <h2> Updated October 7, 2024</h2>
+            <h2>Prepared by Pong Vei Xhen 33480982</h2>
+            <h2> Updated October 7, 2024</h2>
         </span>
         <!-- paragraph -->
-        <p>As the second most traded commodity in the world, coffee is a global phenomenon. This visualization explores the worldwide production, consumption, and trade of coffee. The data is sourced from the International Coffee Organization (ICO) and the United Nations (UN).</p>
+        <p>As the second most traded commodity in the world, coffee is a global phenomenon. This visualization explores
+            the worldwide production, consumption, and trade of coffee. The data is sourced from the International
+            Coffee Organization (ICO) and the United Nations (UN).</p>
     </div>
 
+    <div class="parent">
+        <div class="container">
+            <div class="horizontalcontainer">
+                <div id="barChartExports" class="vis"></div>
+                <div id="mapImports" class="vis"></div>
+            </div>
+            <div class="horizontalcontainer">
+                <div id="streamGraphTop5" class="vis"></div>
+                <div class="vis spacer50"></div>
+            </div>
 
-    <div class="container">
-        <div class="horizontalcontainer">
-            <div id="barChartExports" class="vis"></div>
-            <!-- <div>
-                <h2>Exports of Coffee</h2>
-                <p>Exports of coffee in 1000 60kg bags</p>
-            </div> -->
-            <div id="mapImports" class="vis"></div>
-        </div>
-        <div class="horizontalcontainer">
-            <div id="streamGraphTop5" class="vis"></div>
-            <div class="vis spacer50"></div>
+
+            <div class="horizontalcontainer">
+                <div id="lineChartPrices" class="vis"></div>
+                <div id="lineChartPriceDiff" class="vis"></div>
+            </div>
+            <div id="smallMultiplesGrowers" class="vis"></div>
+            <div id="smallMultiplesRetail" class="vis"></div>
         </div>
 
-       
-        <div class="horizontalcontainer">
-            <div id="lineChartPrices" class="vis"></div>
-            <div id="lineChartPriceDiff" class="vis"></div>
+        <div class="footer">
+            <div class="sources-disclaimers">
+                <h3>Sources</h3>
+                <p>
+                    <a href="https://population.un.org/wpp/Download/Standard/MostUsed/" target="_blank">UN Population
+                        Data</a><br>
+                    <a href="https://www.kaggle.com/datasets/yamaerenay/ico-coffee-dataset-worldwide?select=imports.csv"
+                        target="_blank">ICO Coffee Dataset</a>
+                </p>
+                <div class="divider"></div>
+                <h3>Notes</h3>
+                <ol>
+                    <li>Due to partially incomplete data, the cloropleth map is unable to show import data for certain countries. For instance, it lacks data for most European countries form 2013 onwards.</li>
+                </ol>
+            </div>
         </div>
-        <div id="smallMultiplesGrowers" class="vis"></div>
-        <div id="smallMultiplesRetail" class="vis"></div>
     </div>
     <script>
-
-        const smallmultiplescheme = ['#00429d', '#2e59a8', '#4771b2', '#5d8abd', '#73a2c6', '#8abccf', '#a5d5d8', '#c5eddf', '#ffdec7', '#ffbcaf', '#ff9895', '#f4777f', '#e4576b', '#cf3759', '#b41648', '#93003a']
-        const streamGraphScheme = ['#7c739b', '#a57ca5', '#cc86a4', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84']
-        const mapGraphScheme = ['#ffffff00', '#8279a5', '#a57ca5', '#cc86a4', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84']
-        const streamGraphScheme2 = ['#ffdf84', '#f9c57b', '#efad76', '#e19672', '#cf8270', '#b96f6d', '#a25f68', '#885062']
-        const streamGraphScheme3 = ['#7c739b', '#a57ca5', '#cc86a4', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84', '#f9c57b', '#efad76', '#e19672', '#cf8270', '#b96f6d', '#a25f68', '#885062']
-        const lineChartScheme = ['#596988', '#a57ca5', '#ec939c', '#ffa78f', '#ffc184', '#ffdf84']
-        const blueHueScheme = ['#c1e7ff', '#a7cfe9', '#8eb8d3', '#75a1be', '#5d8ba9', '#437594', '#296080', '#004c6d']
-        const coffeeScheme = ['#fff6df', '#f4e6cd', '#e9d6bb', '#dfc6aa', '#d5b699', '#cba78a', '#c2977b', '#c2977b', '#c2977b', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e', '#b8876e']
-        const blueyellowScheme = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
-        const blueyellowScheme2 = ['#003f5c', '#7a5195', '#ef5675', '#ffa600']
-        const greenScheme = ['#5d7e9c', '#6098b3', '#65b2c5', '#72ccd2', '#89e6db', '#aaffdf']
-
 
         const sharedParam = {
             "name": "yearSelection",
