@@ -116,6 +116,23 @@
           "as": "importtooltip"
         }
       ],
+      "params": [
+        {
+          "name": "hoveredCountry",
+          "select": {
+            "type": "point",
+            "fields": ["properties.NAME"],
+            "on": "mouseover"
+          }
+        },
+        {
+          "name": "selectedCountry",
+          "select": {
+            "type": "point",
+            "fields": ["properties.NAME"]
+          }
+        }
+      ],
       "mark": {
         "type": "geoshape",
         "cursor": "pointer",
@@ -163,7 +180,21 @@
             "field": "importtooltip",
             "title": "imports"
           }
-        ]
+        ],
+        "opacity": {
+          "condition": [
+            {
+              "param": "selectedCountry",
+              "value": 1
+            },
+            {
+              "param": "hoveredCountry",
+              "value": 0.8,
+              "empty": false
+            }
+          ],
+          "value": 0.3
+        }
       }
     },
     {
