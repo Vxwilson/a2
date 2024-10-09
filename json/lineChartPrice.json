@@ -1,10 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "Volatility of Coffee Prices"
+        "text": "Volatility of Coffee Prices",
+        "anchor": "start",
+        "dx": 30
     },
-    "width": 580,
-    "height": 350,
+    "width": 900,
+    "height": 450,
     "data": {
         "url": "data/indicator-prices.csv",
         "format": {
@@ -29,108 +31,185 @@
             ]
         }
     ],
-    "mark": {
-        "type": "line",
-        "size": 1.5,
-        "interpolate": "basis",
-        "cursor": "pointer"
-    },
-    "params": [
+
+    "vconcat": [
         {
-            "name": "hoveredCountry",
-            "select": {
-                "type": "point",
-                "fields": [
-                    "Coffee Type"
-                ],
-                "on": "mouseover"
-            }
-        },
-        {
-            "name": "selectedCountry",
-            "select": {
-                "type": "point",
-                "fields": [
-                    "Coffee Type"
-                ]
-            }
-        }
-    ],
-    "encoding": {
-        "x": {
-            "field": "date",
-            "type": "temporal",
-            "title": "Month/Year",
-            "axis": {
-                "format": "%b %Y"
-            }
-        },
-        "y": {
-            "field": "Price",
-            "type": "quantitative",
-            "title": "Price (US dollars per kilogram)",
-            "scale": {
-                "zero": false
-            }
-        },
-        "color": {
-            "field": "Coffee Type",
-            "type": "nominal",
-            "title": "Coffee Type",
-            "scale": {
-                "range": [
-                    "#596988",
-                    "#a57ca5",
-                    "#ec939c",
-                    "#ffa78f"
-                ]
-            },
-            "legend": {
-                "disable": true
-            }
-        },
-        "tooltip": [
-            {
-                "field": "date",
-                "type": "temporal",
-                "title": "Date",
-                "format": "%b %Y"
-            },
-            {
-                "field": "Coffee Type",
-                "type": "nominal",
-                "title": "Coffee Type"
-            },
-            {
-                "field": "Price",
-                "type": "quantitative",
-                "title": "Price",
-                "format": ".2f"
-            }
-        ],
-        "opacity": {
-            "condition": [
+            "params": [ 
                 {
-                    "param": "selectedCountry",
-                    "value": 1
+                    "name": "hoveredCountry",
+                    "select": {
+                        "type": "point",
+                        "fields": [
+                            "Coffee Type"
+                        ],
+                        "on": "mouseover"
+                    }
                 },
                 {
-                    "param": "hoveredCountry",
-                    "value": 0.8,
-                    "empty": false
+                    "name": "selectedCountry",
+                    "select": {
+                        "type": "point",
+                        "fields": [
+                            "Coffee Type"
+                        ],
+                        "on": "click"
+                    },
+                    "bind": "legend"
                 }
             ],
-            "value": 0.3
+            "width": 900,
+            "height": 300,
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "axis": {
+                        "title": ""
+                    }
+                },
+                "y": {
+                    "field": "Price",
+                    "type": "quantitative",
+                    "title": "Price (US dollars per kilogram)",
+                    "scale": {
+                        "zero": false
+                    }
+                },
+                "color": {
+                    "field": "Coffee Type",
+                    "type": "nominal",
+                    "title": "Coffee Type",
+                    "scale": {
+                        "range": [
+                            "#596988",
+                            "#a57ca5",
+                            "#ec939c",
+                            "#ffa78f"
+                        ]
+                    }
+                },
+                "opacity": {
+                    "condition": [
+                        {
+                            "param": "selectedCountry",
+                            "value": 1
+                        },
+                        {
+                            "param": "hoveredCountry",
+                            "value": 0.8,
+                            "empty": false
+                        }
+                    ],
+                    "value": 0.3
+                }
+            }
         },
-        "strokeWidth": {
-            "condition": [
+        {
+            "width": 900,
+            "height": 125,
+            "mark": {
+                "type": "line",
+                "size": 2,
+                "interpolate": "basis",
+                "cursor": "pointer"
+            },
+            "params":[
                 {
-                    "param": "hoveredCountry",
-                    "value": 2,
-                    "empty": false
+                    "name": "brush",
+                    "select": {
+                        "type": "interval",
+                        "encodings": [
+                            "x"
+                        ]
+                    },
+                    "value": {"x": [{"year": 2010, "month": 1}, {"year": 2018, "month": 12}]}
                 }
             ],
-            "value": 1.25
+            "encoding": {
+                "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "title": "Month/Year",
+
+                    "axis": {
+                        "grid": false
+                      }
+                },
+                "y": {
+                    "field": "Price",
+                    "type": "quantitative",
+                    "title": "Price",
+                    "scale": {
+                        "zero": false
+                    },
+                    "axis": {
+                        "grid": false
+                      }
+                },
+                "color": {
+                    "field": "Coffee Type",
+                    "type": "nominal",
+                    "title": "Coffee Type",
+                    "scale": {
+                        "range": [
+                            "#596988",
+                            "#a57ca5",
+                            "#ec939c",
+                            "#ffa78f"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "date",
+                        "type": "temporal",
+                        "title": "Date",
+                        "format": "%b %Y"
+                    },
+                    {
+                        "field": "Coffee Type",
+                        "type": "nominal",
+                        "title": "Coffee Type"
+                    },
+                    {
+                        "field": "Price",
+                        "type": "quantitative",
+                        "title": "Price",
+                        "format": ".2f"
+                    }
+                ],
+                "opacity": {
+                    "condition": [
+                        {
+                            "param": "selectedCountry",
+                            "value": 1
+                        },
+                        {
+                            "param": "hoveredCountry",
+                            "value": 0.8,
+                            "empty": false
+                        }
+                    ],
+                    "value": 0.3
+                },
+                "strokeWidth": {
+                    "condition": [
+                        {
+                            "param": "hoveredCountry",
+                            "value": 2,
+                            "empty": false
+                        }
+                    ],
+                    "value": 2
+                }
+            }
+
         }
-    }
+    ]
 }

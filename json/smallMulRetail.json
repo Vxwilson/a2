@@ -1,7 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Retail Prices over Time"
+    "text": "Retail Prices over Time",
+    "anchor": "start",
+    "dx": 30
   },
   "data": {
     "url": "data/retail-prices.csv",
@@ -78,7 +80,7 @@
             "bind": "legend"
           }
         ],
-        "width": 280,
+        "width": 210,
         "height": 60,
         "mark": {
           "type": "area",

@@ -1,11 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 580,
-  "height": 300,
+  "width": 900,
+  "height": 450,
   "title": {
     "text": {
       "signal": "'Coffee Exports in ' + yearSelection"
-    }
+    },
+    "anchor": "start",
+    "dx": 50
   },
   "data": {
     "url": "data/exports-calendar-year.csv",
@@ -248,8 +250,7 @@
         "align": "right",
         "baseline": "middle",
         "format": ".2f",
-        "dx": 300,
-        "dy": 200,
+
         "fontSize": 11,
         "fontWeight": "regular"
       },
@@ -258,10 +259,10 @@
           "field": "countryCount"
         },
         "y": {
-          "value": 30
+          "value": 370
         },
         "x": {
-          "value": 275
+          "value": 875
         }
       }
     },

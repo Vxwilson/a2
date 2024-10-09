@@ -3,8 +3,8 @@
     "title": {
         "text": "Price Difference to Average"
     },
-    "width": 580,
-    "height": 350,
+    "width": 900,
+    "height": 450,
     "data": {
         "url": "data/indicator_prices_avgdiff.csv",
         "format": {
@@ -48,13 +48,15 @@
                         "type": "point",
                         "fields": [
                             "Coffee Type"
-                        ]
-                    }
+                        ],
+                        "on": "click"
+                    },
+                    "bind": "legend"
                 }
             ],
             "mark": {
                 "type": "line",
-                "size": 1.5,
+                "size": 2,
                 "interpolate": "basis",
                 "color": "#596988",
                 "cursor": "pointer"
@@ -161,10 +163,10 @@
                     "field": "annotationText"
                 },
                 "y": {
-                    "value": 300
+                    "value": 400
                 },
                 "x": {
-                    "value": 40
+                    "value": 100
                 }
             }
         },
@@ -191,13 +193,13 @@
             },
             "encoding": {
                 "y": {
-                    "value": 227
+                    "value": 270
                 },
                 "x": {
-                    "value": 295
+                    "value": 293
                 },
                 "y2": {
-                    "value": 290
+                    "value": 390
                 },
                 "x2": {
                     "value": 260

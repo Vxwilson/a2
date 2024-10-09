@@ -2,9 +2,11 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
       "text": "Top 5 Coffee Exporting Countries Over Time"
+      ,
+    "anchor": "start"
     },
-    "width": 600,
-    "height": 300,
+    "width": 900,
+    "height": 400,
     "data": {
       "url": "data/exports_top5_yearly.csv",
       "format": {
@@ -54,8 +56,8 @@
       "y": {
         "field": "export",
         "type": "quantitative",
-        "axis": null,
-        "stack": "center"
+        "stack": "center",
+        "axis": null
       },
       "color": {
         "field": "exports",
