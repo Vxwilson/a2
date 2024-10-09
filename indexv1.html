@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
-    <link rel="stylesheet" href="css/styles3.css">
+    <link rel="stylesheet" href="css/styles2.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
@@ -32,10 +32,7 @@
         <div class="container">
             <div class="horizontalcontainer">
                 <div id="barChartExports" class="vis"></div>
-
-            </div>
-            <div class="horizontalcontainer">
-
+                
                 <div id="streamGraphTop5" class="vis"></div>
             </div>
             <div class="horizontalcontainer">
@@ -43,33 +40,13 @@
                 <!-- <div class="vis spacer50"></div> -->
             </div>
 
-            <!-- <div class="chart-wrapper"> -->
-            <!-- <button id="toggleChart" class="button" onclick="toggleChartView()">Show Price Difference</button> -->
-            <!-- <button id="toggleChart" class="button" onclick="toggleChartView()">Switch</button> -->
-            <!-- <div class="horizontalcontainer"> -->
-
-            <!-- </div> -->
-            <!-- </div> -->
 
             <div class="horizontalcontainer">
                 <div id="lineChartPrices" class="vis"></div>
-
-            </div>
-            <!-- <div class="horizontalcontainer">
-               
                 <div id="lineChartPriceDiff" class="vis"></div>
-            </div> -->
-            <!--             
-            <div class="horizontalcontainer">
-                <div id="lineChartPrices" class="vis"></div>
-                <div id="lineChartPriceDiff" class="vis"></div>
-            </div> -->
-            <div class="horizontalcontainer">
-                <div id="smallMultiplesGrowers" class="vis"></div>
             </div>
-            <div class="horizontalcontainer">
-                <div id="smallMultiplesRetail" class="vis"></div>
-            </div>
+            <div id="smallMultiplesGrowers" class="vis"></div>
+            <div id="smallMultiplesRetail" class="vis"></div>
         </div>
 
         <div class="footer">
@@ -80,50 +57,21 @@
                         Data</a><br>
                     <a href="https://www.kaggle.com/datasets/yamaerenay/ico-coffee-dataset-worldwide?select=imports.csv"
                         target="_blank">ICO Coffee Dataset</a><br>
-                    <a href="https://www.kaggle.com/datasets/nurielreuven/coffee-consumption-by-country-2022"
-                        target="_blank">Coffee Consumption by Country
+                    <a href="https://www.kaggle.com/datasets/nurielreuven/coffee-consumption-by-country-2022" target="_blank">Coffee Consumption by Country 
                     </a>
                 </p>
                 <div class="divider"></div>
                 <h3>Footnotes</h3>
                 <ol>
-                    <li>Due to partially incomplete data, the cloropleth map is unable to show import data for certain
-                        countries. For instance, it lacks data for most European countries form 2013 onwards.</li>
-                    <li>Based on a Coffee Association of Canada (CAC) <a
-                            href="https://coffeeassoc.com/wp-content/uploads/2021/06/CAC-Coffee-Drinking-Trends-INFOGRAPHIC-2018.pdf"
-                            target="_blank">infographic</a> in 2018.</li>
-                    <li>According to a 2016 Kaggle data processed <a
-                            href="https://www.kaggle.com/datasets/nurielreuven/coffee-consumption-by-country-2022"
-                            target="_blank">here</a>.</li>
-                    <li>2008. See Meseums Victoria Collection's <a
-                            href="https://collections.museumsvictoria.com.au/articles/2933" target="_blank">article</a>.
-                    </li>
+                    <li>Due to partially incomplete data, the cloropleth map is unable to show import data for certain countries. For instance, it lacks data for most European countries form 2013 onwards.</li>
+                    <li>Based on a Coffee Association of Canada (CAC) <a href="https://coffeeassoc.com/wp-content/uploads/2021/06/CAC-Coffee-Drinking-Trends-INFOGRAPHIC-2018.pdf" target="_blank">infographic</a> in 2018.</li>
+                    <li>According to a 2016 Kaggle data processed <a href="https://www.kaggle.com/datasets/nurielreuven/coffee-consumption-by-country-2022" target="_blank">here</a>.</li>
+                    <li>2008. See Meseums Victoria Collection's <a href="https://collections.museumsvictoria.com.au/articles/2933" target="_blank">article</a>.</li>
                 </ol>
             </div>
         </div>
     </div>
     <script>
-        let showingPrices = true;
-
-        function toggleChartView() {
-            showingPrices = !showingPrices;
-            const pricesChart = document.getElementById("lineChartPrices");
-            const diffChart = document.getElementById("lineChartPriceDiff");
-            const toggleButton = document.getElementById("toggleChart");
-
-
-            if (showingPrices) {
-                pricesChart.style.width = "80%";
-                diffChart.style.width = "0%";
-                // toggleButton.textContent = "Show Price Difference"; // Update button text
-            } else {
-                pricesChart.style.width = "0%";
-                diffChart.style.width = "80%";
-                // toggleButton.textContent = "Show Prices"; // Update button text
-            }
-        }
-
-        // toggleChartView();
 
         const sharedParam = {
             "name": "yearSelection",
@@ -248,13 +196,6 @@
                             .catch(console.warn);
                     });
             });
-
-
-        var elems = document.querySelectorAll('vega-bind');
-
-        // last-of-type = NodeList length - 1
-        if (elems.length)
-            elems[elems.length - 1].className += 'last-of-type';
     </script>
 </body>
 

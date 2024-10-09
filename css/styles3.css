@@ -18,7 +18,7 @@ body {
     min-height: 100vh;
 }
 
-.button{
+.button {
     /* background-color: #2196F3; */
     color: #1932c8;
     padding: 10px 20px;
@@ -34,10 +34,12 @@ body {
 
 } */
 .chart-wrapper {
-    position: relative;            /* Needed for absolute positioning */
+    position: relative;
+    /* Needed for absolute positioning */
     width: 100%;
     margin-bottom: 10px;
-    text-align: center;          /* Center the title */
+    text-align: center;
+    /* Center the title */
 
 }
 
@@ -50,7 +52,8 @@ body {
 
 } */
 #toggleChart {
-    background-color: #eaeaea; /* Green */
+    background-color: #eaeaea;
+    /* Green */
     border: none;
     color: #1932c8;
     padding: 6px 10px;
@@ -59,8 +62,10 @@ body {
     /* display: inline-block; */
     font-size: 14px;
     cursor: pointer;
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    border-radius: 5px;
+    /* Rounded corners */
+    transition: background-color 0.3s ease;
+    /* Smooth transition on hover */
 
     position: absolute;
     /* right: 320px;
@@ -72,7 +77,8 @@ body {
 }
 
 #toggleChart:hover {
-    background-color: #e9e8ff; /* Darker green on hover */
+    background-color: #e9e8ff;
+    /* Darker green on hover */
 }
 
 .header {
@@ -98,11 +104,13 @@ body {
     }
 }
 
-.header p{
-/* align left */
-font-family: 'Helvetica Neue', Roboto, sans-serif;
+.header p {
+    /* align left */
+    font-family: 'Helvetica Neue', Roboto, sans-serif;
+    /* font-family: monospace; */
+
     text-align: left;
-    font-size: 0.95em;
+    font-size: 1.1em;
     margin-bottom: 0.5em;
     font-style: normal;
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
@@ -118,8 +126,10 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
     font-weight: 400;
 }
 
-.header h2{
-    font-family: 'Helvetica Neue', Roboto, sans-serif;
+.header h2 {
+    /* font-family: 'Helvetica Neue', Roboto, sans-serif; */
+    font-family: monospace;
+
     /* serif font */
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
     font-size: 0.8em;
@@ -129,24 +139,25 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
     /* color: #525b74; */
 }
 
-.header span{
+.header span {
     display: flex;
     justify-content: center;
 }
 
 /* margin for first header h2 */
-.header h2:nth-of-type(1){
+.header h2:nth-of-type(1) {
     margin-right: 50px;
 }
 
-.facet-title{
+.facet-title {
     /* color:rgb(25, 9, 202); */
 }
 
-.parent{
+.parent {
     max-width: 92%;
     min-width: 80%;
 }
+
 .container {
     background-color: white;
     background-color: #ffffff;
@@ -166,7 +177,7 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
 
 .vega-embed {
     border: none;
-    
+
 }
 
 .vega-lite .mark-rect {
@@ -192,18 +203,18 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
 }
 
 
-.vega-bind{
-	position: absolute;
-	top: 0px;
+.vega-bind {
+    position: absolute;
+    top: 0px;
     right: 50px;
-    color:rgb(25, 9, 202);
+    color: rgb(25, 9, 202);
 }
 
 .vega-bind span {
     font-size: 12px;
 }
 
-.vega-bind{
+.vega-bind {
     /* width: 100%; */
     font-family: 'Helvetica Neue', Roboto, sans-serif;
     /* font-size: 12px; */
@@ -225,7 +236,7 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
 
 /* modular divs */
 
-.spacer50{
+.spacer50 {
     width: 50%;
 }
 
@@ -242,13 +253,13 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
     /* border: 1px solid #1932c8; */
 }
 
-#barChartExports{
+#barChartExports {
     width: 80% !important;
     /* height: 500px !important; */
     margin-bottom: 50px !important;
 }
 
-#mapImports{
+#mapImports {
     width: 80% !important;
     /* height: 800px !important; */
     padding-top: 80px !important;
@@ -256,29 +267,29 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
     margin-right: 2% !important;
 }
 
-#streamGraphTop5{
+#streamGraphTop5 {
     width: 80% !important;
     margin-left: 5% !important;
 }
 
-#lineChartPrices{
+#lineChartPrices {
     width: 80% !important;
     margin-left: 2.5% !important;
     margin-bottom: 50px !important;
 }
 
- #lineChartPriceDiff{
+#lineChartPriceDiff {
     width: 80% !important;
     margin-left: 2.5% !important;
 }
 
-#smallMultiplesGrowers{
+#smallMultiplesGrowers {
     width: 80% !important;
     margin-left: 2.5% !important;
     margin-bottom: 50px !important;
 }
 
-#smallMultiplesRetail{
+#smallMultiplesRetail {
     width: 80% !important;
     margin-left: 2.5% !important;
     margin-bottom: 50px !important;
@@ -305,9 +316,10 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
     margin: 10px auto;
     box-sizing: border-box;
 
-    margin-top: 0px; /* Add some spacing between container and footer */
+    margin-top: 0px;
+    /* Add some spacing between container and footer */
 
-    font-family: 'Helvetica Neue', Roboto, sans-serif; 
+    font-family: 'Helvetica Neue', Roboto, sans-serif;
     text-align: left;
     font-size: 0.95em;
     margin-bottom: 0.5em;
@@ -326,13 +338,15 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
     background-color: rgba(0, 0, 0, 0.05);  */
 }
 
-.sources-disclaimers .divider{
+.sources-disclaimers .divider {
     /* margin-top: 10px; */
     margin-bottom: 40px;
     /* border-top: 1px solid #1932c8; */
 }
+
 .sources-disclaimers h3 {
-    margin-bottom: 0px; /* Adjust spacing as needed */
+    margin-bottom: 0px;
+    /* Adjust spacing as needed */
     /* font-family: "Bebas Neue", sans-serif; */
     /* font-size: 1.5em;
     margin: 10 auto 10;
@@ -341,8 +355,10 @@ font-family: 'Helvetica Neue', Roboto, sans-serif;
 }
 
 .sources-disclaimers p a {
-    display: block;      /* Makes each link take up the full width */
-    margin-bottom: -5px; /* Add some space between links */
+    display: block;
+    /* Makes each link take up the full width */
+    margin-bottom: -5px;
+    /* Add some space between links */
     font-size: 0.85em;
 }
 
@@ -357,6 +373,7 @@ a:link {
     /* set underline width */
     text-decoration-thickness: 2px;
 }
+
 a:visited {
     /* text-decoration: none; */
     color: #1932c8;
@@ -370,7 +387,7 @@ a:hover {
     text-decoration-color: #fbdf85;
 }
 
-.sources-disclaimers ol{
+.sources-disclaimers ol {
     list-style-position: inside;
     padding-left: 0;
     font-size: 0.85em;
