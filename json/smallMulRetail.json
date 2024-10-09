@@ -80,7 +80,7 @@
             "bind": "legend"
           }
         ],
-        "width": 210,
+        "width": 208,
         "height": 60,
         "mark": {
           "type": "area",
