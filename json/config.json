@@ -7,9 +7,9 @@
     "title": {
         "font": "monospace", 
         "fontSize": 17,
-        "fontWeight": "500",
+        "fontWeight": "600",
         "fontStyle": "normal",
-        "color": "#1932c8"
+        "color": "#2947ce"
     },
     "axis": {
         "labelFont": "Roboto",

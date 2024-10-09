@@ -71,7 +71,7 @@
         "min": 1990,
         "max": 2018,
         "step": 1,
-        "name": "Year:"
+        "name": " "
       }
     }
   ],
@@ -278,8 +278,8 @@
             "field": "export",
             "type": "quantitative"
           },
-          "color": {"value": "#454545"},
-          "size": {"value": 3}
+          "color": {"value": "#ff643a80"},
+          "size": {"value": 2.5}
         }
         ,
         "zindex": {"value": -10}
