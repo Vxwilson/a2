@@ -65,6 +65,19 @@
         "title": "Country"
       },
       "spec": {
+        "params": [
+          {
+            "name": "selectedCountry",
+            "select": {
+              "type": "point",
+              "fields": [
+                "retail_prices"
+              ],
+              "on": "click"
+            },
+            "bind": "legend"
+          }
+        ],
         "width": 280,
         "height": 60,
         "mark": {
@@ -124,7 +137,18 @@
               "field": "pricetooltip",
               "title": "Price"
             }
-          ]
+          ],
+          "strokeWidth": {
+            "condition": [
+    
+              {
+                "param": "selectedCountry",
+                "value": 2.5,
+                "empty": false
+              }
+            ],
+            "value": 1.25
+          }
         }
       }
     }
