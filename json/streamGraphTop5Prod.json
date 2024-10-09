@@ -30,8 +30,10 @@
         "name": "selectedCountry",
         "select": {
           "type": "point",
-          "fields": ["exports"]
-        }
+          "fields": ["exports"],
+          "on": "click"
+        },
+        "bind": "legend"
       }
     ],
     "mark": {
@@ -82,11 +84,6 @@
           {
             "param": "selectedCountry",
             "value": 1
-          },
-          {
-            "param": "hoveredCountry",
-            "value": 0.8,
-            "empty": false
           }
         ],
         "value": 0.3

@@ -74,6 +74,7 @@
     }
   ],
   "layer": [
+    
     {
       "params": [
         {
@@ -178,6 +179,7 @@
         }
       }
     },
+  
     {
       "transform": [
         {
@@ -220,42 +222,7 @@
         }
       }
     },
-    {
-      "transform": [
-        {
-          "aggregate": [
-            {
-              "op": "sum",
-              "field": "export",
-              "as": "totalExport"
-            }
-          ]
-        },
-        {
-          "calculate": "split('Robustas, often viewed as the less-desirable coffee \\nvariant, has always been the cheapest in price.', '\\n')",
-          "as": "annotationText"
-        }
-      ],
-      "mark": {
-        "type": "rule",
-        "color": "#525b74",
-        "strokeWidth": 1
-      },
-      "encoding": {
-        "y": {
-          "value": 40
-        },
-        "x": {
-          "value": 10
-        },
-        "y2": {
-          "value": 48
-        },
-        "x2": {
-          "value": 45
-        }
-      }
-    },
+    
     {
       "transform": [
         {
@@ -272,12 +239,8 @@
           ]
         },
         {
-          "calculate": "split('In ' + yearSelection + ', \\n' + datum.countryCount  + ' countries exported a total of \\n' +  format(datum.totalExport * 1000 / 1000000, '.2f') + ' million bags of coffee.', '\\n')",
+          "calculate": "split('In ' + yearSelection + ', ' + datum.countryCount  + ' countries exported \\na total of ' +  format(datum.totalExport * 1000 / 1000000, '.2f') + ' million bags.', '\\n')",
           "as": "countryCount"
-        },
-        {
-          "calculate": "split('In ' + yearSelection + ', \\n' + datum.countryCount  + ' countries exported a total of \\n' +  format(datum.totalExport * 1000 / 1000000, '.2f') + ' million bags of coffee.', '\\n')",
-          "as": "totalExport"
         }
       ],
       "mark": {
