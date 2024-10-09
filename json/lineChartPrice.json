@@ -3,7 +3,8 @@
     "title": {
         "text": "Volatility of Coffee Prices",
         "anchor": "start",
-        "dx": 30
+        "dx": 30,
+        "subtitle": ["Robustas, often considered lower quality, has consistently ","been cheaper and subject to less flunctuations than Arabica."]
     },
     "width": 900,
     "height": 450,

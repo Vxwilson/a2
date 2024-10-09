@@ -1,9 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "Top 5 Coffee Exporting Countries Over Time"
+      "text": "Top 5 Coffee-Exporting Countries Over Time"
       ,
-    "anchor": "start"
+    "anchor": "start",
+    "subtitle": ["Leading coffee producers are also top exporters, weaving in and out ", "of the leaderboard. Notice Vietnam's rise to prominence since 1997."]
     },
     "width": 900,
     "height": 400,

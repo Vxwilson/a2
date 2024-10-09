@@ -20,7 +20,7 @@
         <h1>The Worldwide Phenomenon of Coffee</h1>
         <span>
             <h2>Prepared by Pong Vei Xhen 33480982</h2>
-            <h2> Updated October 9, 2024</h2>
+            <h2> Updated October 10, 2024</h2>
         </span>
         <!-- paragraph -->
         <p>As the second most traded commodity in the world, coffee is a global phenomenon. This visualization explores
@@ -143,7 +143,8 @@
             .then(response => response.json())
             .then(configData => {
                 // fetch bar chart data 
-                fetch('json/barChartExports_gray.json')
+                // fetch('json/barChartExports_gray.json')
+                fetch('json/barChartProduction.json')
                     .then(response => response.json())
                     .then(spec => {
                         // Now configData contains the parsed JSON object

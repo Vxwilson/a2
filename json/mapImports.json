@@ -3,7 +3,13 @@
   "title": {
     "text": "Who's Drinking It?",
     "anchor": "start",
-    "dx": 20
+    "dx": 5,
+    "subtitle": [
+      "Geographically, coffee planters lie in the 'bean belt' between the",
+      "Tropics of Cancer and Capricorn. They export to countries worldwide.",
+      " ۪",
+      "Import in millions of 60-kg bags."
+    ]
   },
   "width": 900,
   "height": 450,
@@ -110,11 +116,11 @@
           }
         },
         {
-          "calculate": "datum[yearSelection]",
+          "calculate": "datum[yearSelection]/1000",
           "as": "Count"
         },
         {
-          "calculate": "format(datum[yearSelection] * 1000 / 1000000, '.3f') + ' million bags (60-kg) of coffee.'",
+          "calculate": "format(datum[yearSelection] * 1000 / 1000000, '.4f') + ' million bags (60-kg) of coffee.'",
           "as": "importtooltip"
         }
       ],
@@ -143,7 +149,7 @@
         "type": "geoshape",
         "cursor": "pointer",
         "stroke": "#1932c8",
-        "strokeWidth": 0.5
+        "strokeWidth": 0.75
       },
       "encoding": {
         "color": {
@@ -152,28 +158,29 @@
           "scale": {
             "domain": [
               0,
-              0.001,
-              100,
-              500,
-              2000,
-              6000,
-              10000,
-              25000
+              0.00001,
+              0.0005,
+              0.1,
+              0.5,
+              1,
+              4,
+              9,
+              20
             ],
             "range": [
               "#ffffff00",
-              "#8279a5",
-              "#a57ca5",
-              "#cc86a4",
-              "#ec939c",
-              "#ffa78f",
-              "#ffc184",
-              "#ffdf84"
+              "#fff9cea5",
+              "#fffab8d9",
+              "#f6d393",
+              "#eeb07f",
+              "#ffa481",
+              "#e2827a",
+              "#a55c69",
+              "#9c577e"
             ]
           },
           "legend": {
-            "title": "Imports (thousand 60kg bags)",
-            "disable": true
+            "title": "Imports"
           }
         },
         "tooltip": [
@@ -236,6 +243,9 @@
         },
         "text": {
           "field": "annotationText"
+        },
+        "color": {
+          "value": "#252a35"
         }
       }
     },
@@ -318,6 +328,9 @@
         },
         "text": {
           "field": "annotationText"
+        },
+        "color": {
+          "value": "#252a35"
         }
       }
     },
@@ -400,6 +413,9 @@
         },
         "text": {
           "field": "annotationText"
+        },
+        "color": {
+          "value": "#252a35"
         }
       }
     },
@@ -482,6 +498,9 @@
         },
         "text": {
           "field": "annotationText"
+        },
+        "color": {
+          "value": "#252a35"
         }
       }
     },

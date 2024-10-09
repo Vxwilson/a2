@@ -53,7 +53,7 @@ body {
     /* todo find suitable */
     font-family: Roboto, sans-serif;
     /* font-family: 'Helvetica Neue', Roboto, sans-serif; */
-    /* font-family: monospace; */
+    font-family: monospace;
 
     /* justiy text */
 
@@ -64,6 +64,7 @@ body {
     font-style: normal;
 
     font-weight: 400;
+    color: #576078;
 }
 
 
@@ -119,7 +120,7 @@ body {
 form.vega-bindings {
     position: absolute;
     /* right: 160px; */
-    bottom: 0px;
+    bottom: -20px;
 }
 
 .container {
@@ -165,6 +166,7 @@ form.vega-bindings {
 }
 
 #barChartExports {
+    margin-left: -7.5% !important;
     width: 80% !important;
     margin-bottom: 30px !important;
 }
@@ -174,7 +176,7 @@ form.vega-bindings {
     /* padding-top: 80px !important; */
     padding-bottom: 10px !important;
     margin-bottom: 50px !important;
-    margin-right: 2% !important;
+    margin-left: 0.5% !important;
 }
 
 #streamGraphTop5 {

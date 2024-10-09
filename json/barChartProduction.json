@@ -4,13 +4,14 @@
   "height": 450,
   "title": {
     "text": {
-      "signal": "'Coffee Exports in ' + yearSelection"
+      "signal": "yearSelection + ' Coffee Production by Country'"
     },
     "anchor": "start",
-    "dx": 50
+    "dx": 140,
+    "subtitle": "Production in millions of 60-kg bags."
   },
   "data": {
-    "url": "data/exports-calendar-year.csv",
+    "url": "data/total-production.csv",
     "format": {
       "type": "csv"
     },
@@ -60,6 +61,10 @@
     },
     {
       "filter": "datum.hasExport == true"
+    },
+    {
+      "calculate": "toNumber(datum.export) / 1000",
+      "as": "exportinmil"
     }
   ],
   "params": [
@@ -96,17 +101,17 @@
         },
         {
           "name": "brush",
-          "select": { "type": "interval", "encodings": ["x"] }
+          "select": { "type": "interval", "encodings": ["y"] }
         }
       ],
       "transform": [
         {
-          "calculate": "format(datum.export * 1000 / 1000000, '.3f') + ' million bags (60-kg) of coffee.'",
+          "calculate": "format(datum.exportinmil, '.3f') + ' million bags of coffee.'",
           "as": "exporttooltip"
         },
         {
-          "calculate": "toNumber(datum.export) ",
-          "as": "export"
+          "calculate": "toNumber(datum.exportinmil)",
+          "as": "exportinmil"
         }
       ],
       "mark": {
@@ -117,20 +122,20 @@
         "stroke": "#1932c8"
       },
       "encoding": {
-        "y": {
-          "field": "export",
-          "type": "quantitative",
-          "title": "Exports (thousand 60kg bags)"
-        },
         "x": {
+          "field": "exportinmil",
+          "type": "quantitative",
+          "title": "Production (millions of 60kg bags)"
+        },
+        "y": {
           "field": "exports",
           "type": "nominal",
-          "sort": "-y",
+          "sort": "-x",
           "stack": "null",
           "title": ""
         },
         "color": {
-          "field": "export",
+          "field": "exportinmil",
           "type": "quantitative",
           "scale": {
             "range": [
@@ -146,7 +151,7 @@
           "strokeWidth": {
             "value": 0
           },
-          "title": "Exports"
+          "title": "Production"
         },
         "tooltip": [
           {
@@ -185,20 +190,20 @@
     {
       "transform": [
         {
-          "calculate": "toNumber(datum.export)",
-          "as": "export"
+          "calculate": "toNumber(datum.exportinmil)",
+          "as": "exportinmil"
         },
         {
           "aggregate": [
             {
               "op": "max",
-              "field": "export",
+              "field": "exportinmil",
               "as": "max_export"
             }
           ]
         },
         {
-          "calculate": "split('Brazil alone exported ' + format(datum.max_export * 1000 / 1000000, '.2f') + ' million bags (60-kg) of coffee,\\nleading first place at a huge margin.', '\\n')",
+          "calculate": "split('Brazil alone produced ' + format(datum.max_export, '.2f') + ' million bags (60-kg) \\nof coffee, dominating global production.', '\\n')",
           "as": "formatted_export"
         }
       ],
@@ -217,10 +222,10 @@
           "field": "formatted_export"
         },
         "y": {
-          "value": 41
+          "value": 23
         },
         "x": {
-          "value": 50
+          "value": 550
         },
         "color": {
           "value": "#252a35"
@@ -234,7 +239,7 @@
           "aggregate": [
             {
               "op": "sum",
-              "field": "export",
+              "field": "exportinmil",
               "as": "totalExport"
             },
             {
@@ -244,13 +249,13 @@
           ]
         },
         {
-          "calculate": "split('In ' + yearSelection + ', ' + datum.countryCount  + ' countries exported \\na total of ' +  format(datum.totalExport * 1000 / 1000000, '.2f') + ' million bags.', '\\n')",
+          "calculate": "split('In ' + yearSelection + ', ' + datum.countryCount  + ' countries produced \\na total of ' +  format(datum.totalExport, '.2f') + ' million bags.', '\\n')",
           "as": "countryCount"
         }
       ],
       "mark": {
         "type": "text",
-        "align": "right",
+        "align": "left",
         "baseline": "middle",
         "format": ".2f",
 
@@ -262,10 +267,10 @@
           "field": "countryCount"
         },
         "y": {
-          "value": 370
+          "value": 400
         },
         "x": {
-          "value": 875
+          "value": 325
         },
         "color": {
           "value": "#252a35"
@@ -279,9 +284,9 @@
         "mark": "rule",
         "encoding": {
 
-          "y": {
+          "x": {
             "aggregate": "mean",
-            "field": "export",
+            "field": "exportinmil",
             "type": "quantitative"
           },
           "color": {

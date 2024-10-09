@@ -9,7 +9,8 @@
         "fontSize": 17,
         "fontWeight": "600",
         "fontStyle": "normal",
-        "color": "#2947ce"
+        "color": "#2947ce",
+        "subtitleColor": "#2947ce"
     },
     "axis": {
         "labelFont": "Roboto",

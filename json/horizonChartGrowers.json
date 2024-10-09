@@ -1,9 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "Prices Paid to Growers Over Time",
+      "text": "Farm-Gate Coffee Prices Paid to Growers",
       "anchor": "start",
-      "dx": 30
+      "dx": 30,
+      "subtitle": "Units are in US dollars per kilogram."
     },
     "data": {
       "url": "data/prices-paid-to-growers.csv",

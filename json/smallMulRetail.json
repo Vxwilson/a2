@@ -3,7 +3,8 @@
   "title": {
     "text": "Retail Prices over Time",
     "anchor": "start",
-    "dx": 30
+    "dx": 30,
+    "subtitle": "Units are in US dollars per kilogram."
   },
   "data": {
     "url": "data/retail-prices.csv",
@@ -102,7 +103,8 @@
             "type": "quantitative",
             "axis": {
               "grid": false
-            }
+            },
+            "title": "Price"
           },
           "color": {
             "field": "retail_prices",
