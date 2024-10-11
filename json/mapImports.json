@@ -48,6 +48,19 @@
       }
     },
     {
+      "data":{
+        "url": "map/ne_10m_ocean.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_ocean"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#bfdbe870"
+      }
+    },
+    {
       "transform": [
         {
           "calculate": "'No available data'",
@@ -156,6 +169,7 @@
           "field": "Count",
           "type": "quantitative",
           "scale": {
+            "type": "threshold",
             "domain": [
               0,
               0.00001,
