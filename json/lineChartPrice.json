@@ -77,7 +77,7 @@
                 "y": {
                     "field": "Price",
                     "type": "quantitative",
-                    "title": "Price (US dollars per kilogram)",
+                    "title": "Price (US dollars per kg)",
                     "scale": {
                         "zero": false
                     }

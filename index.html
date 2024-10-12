@@ -54,6 +54,10 @@
             <div class="horizontalcontainer">
                 <div id="smallMultiplesRetail" class="vis"></div>
             </div>
+
+            <div class="horizontalcontainer">
+                <div id="rangeddotPlotConsumption" class="vis"></div>
+            </div>
         </div>
 
         <div class="footer">
@@ -82,7 +86,8 @@
                     <li>2008. See Meseums Victoria Collection's <a
                             href="https://collections.museumsvictoria.com.au/articles/2933" target="_blank">article</a>.
                     </li>
-                    <li>Here we use the min and max price of all 4 coffee types aggregated in a single year. While this introduces ambiguity to the interpretation of the correlation,
+                    <li>Here we use the min and max price of all 4 coffee types aggregated in a single year. While this
+                        introduces ambiguity to the interpretation of the correlation,
                         the goal is to provide a general overview of the price trend.
                     </li>
                 </ol>
@@ -221,6 +226,21 @@
                     .then(spec => {
                         // Now configData contains the parsed JSON object
                         vegaEmbed("#smallMultiplesRetail", spec, {
+                            mode: "vega-lite",
+                            renderer: "svg",
+                            actions: false,
+                            config: configData
+                        })
+                            .then(console.log)
+                            .catch(console.warn);
+                    });
+
+                // fetch dotPlot
+                fetch('json/rangeddotPlotConsumption.json')
+                    .then(response => response.json())
+                    .then(spec => {
+                        // Now configData contains the parsed JSON object
+                        vegaEmbed("#rangeddotPlotConsumption", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
                             actions: false,

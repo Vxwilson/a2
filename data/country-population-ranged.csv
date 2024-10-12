@@ -1,0 +1,525 @@
+﻿Country,Year,Population
+Burundi,1990,5529
+Burundi,2018,11650
+Comoros,1990,439
+Comoros,2018,764
+Djibouti,1990,547
+Djibouti,2018,1063
+Eritrea,1990,2011
+Eritrea,2018,3167
+Ethiopia,1990,46722
+Ethiopia,2018,111152
+Kenya,1990,22504
+Kenya,2018,49716
+Madagascar,1990,11876
+Madagascar,2018,27137
+Malawi,1990,9385
+Malawi,2018,18283
+Mauritius,1990,1082
+Mauritius,2018,1290
+Mayotte,1990,87
+Mayotte,2018,269
+Mozambique,1990,12982
+Mozambique,2018,28592
+Réunion,1990,647
+Réunion,2018,856
+Rwanda,1990,7292
+Rwanda,2018,12344
+Seychelles,1990,74
+Seychelles,2018,114
+Somalia,1990,7094
+Somalia,2018,15175
+South Sudan,1990,4690
+South Sudan,2018,9960
+Uganda,1990,17287
+Uganda,2018,40869
+United Republic of Tanzania,1990,25775
+United Republic of Tanzania,2018,56576
+Zambia,1990,7688
+Zambia,2018,17707
+Zimbabwe,1990,10002
+Zimbabwe,2018,14920
+Middle Africa,1990,71285
+Middle Africa,2018,173940
+Angola,1990,11430
+Angola,2018,30764
+Cameroon,1990,11164
+Cameroon,2018,24458
+Central African Republic,1990,2827
+Central African Republic,2018,4828
+Chad,1990,5916
+Chad,2018,15878
+Congo,1990,2347
+Congo,2018,5416
+Democratic Republic of the Congo,1990,36043
+Democratic Republic of the Congo,2018,88613
+Equatorial Guinea,1990,465
+Equatorial Guinea,2018,1589
+Gabon,1990,970
+Gabon,2018,2185
+Sao Tome and Principe,1990,121
+Sao Tome and Principe,2018,209
+Northern Africa,1990,141302
+Northern Africa,2018,245039
+Algeria,1990,25069
+Algeria,2018,42106
+Egypt,1990,57468
+Egypt,2018,104717
+Libya,1990,4395
+Libya,2018,6795
+Morocco,1990,24157
+Morocco,2018,35652
+Sudan,1990,21799
+Sudan,2018,43539
+Tunisia,1990,8238
+Tunisia,2018,11710
+Western Sahara,1990,177
+Western Sahara,2018,519
+Southern Africa,1990,45480
+Southern Africa,2018,66288
+Botswana,1990,1288
+Botswana,2018,2283
+Eswatini,1990,855
+Eswatini,2018,1164
+Lesotho,1990,1793
+Lesotho,2018,2170
+Namibia,1990,1345
+Namibia,2018,2541
+South Africa,1990,40199
+South Africa,2018,58130
+Western Africa,1990,183216
+Western Africa,2018,392213
+Benin,1990,5200
+Benin,2018,12212
+Burkina Faso,1990,9039
+Burkina Faso,2018,20172
+Cabo Verde,1990,371
+Cabo Verde,2018,513
+Côte d'Ivoire,1990,11948
+Côte d'Ivoire,2018,27100
+Gambia,1990,1032
+Gambia,2018,2371
+Ghana,1990,15197
+Ghana,2018,30327
+Guinea,1990,6296
+Guinea,2018,12543
+Guinea-Bissau,1990,966
+Guinea-Bissau,2018,1900
+Liberia,1990,2554
+Liberia,2018,4896
+Mali,1990,9087
+Mali,2018,20127
+Mauritania,1990,1923
+Mauritania,2018,4273
+Niger,1990,8158
+Niger,2018,21808
+Nigeria,1990,95807
+Nigeria,2018,202647
+Saint Helena,1990,7
+Saint Helena,2018,5
+Senegal,1990,7610
+Senegal,2018,15695
+Sierra Leone,1990,4081
+Sierra Leone,2018,7467
+Togo,1990,3941
+Togo,2018,8157
+Asia,1990,3179271
+Asia,2018,4593876
+Central Asia,1990,50784
+Central Asia,2018,72938
+Kazakhstan,1990,17088
+Kazakhstan,2018,18797
+Kyrgyzstan,1990,4422
+Kyrgyzstan,2018,6278
+Tajikistan,1990,5330
+Tajikistan,2018,9196
+Turkmenistan,1990,3712
+Turkmenistan,2018,6581
+Uzbekistan,1990,20231
+Uzbekistan,2018,32087
+Eastern Asia,1990,1360034
+Eastern Asia,2018,1655765
+China,1990,1143536
+China,2018,1416413
+"China, Hong Kong SAR",1990,5552
+"China, Hong Kong SAR",2018,7461
+"China, Macao SAR",1990,345
+"China, Macao SAR",2018,653
+"China, Taiwan Province of China",1990,20509
+"China, Taiwan Province of China",2018,23651
+Dem. People's Republic of Korea,1990,20956
+Dem. People's Republic of Korea,2018,25876
+Japan,1990,123165
+Japan,2018,127003
+Mongolia,1990,2145
+Mongolia,2018,3136
+Republic of Korea,1990,43826
+Republic of Korea,2018,51572
+Southern Asia,1990,1186163
+Southern Asia,2018,1928346
+Afghanistan,1990,12074
+Afghanistan,2018,36204
+Bangladesh,1990,110542
+Bangladesh,2018,162842
+Bhutan,1990,582
+Bhutan,2018,757
+India,1990,855463
+India,2018,1367229
+Iran (Islamic Republic of),1990,57515
+Iran (Islamic Republic of),2018,85614
+Maldives,1990,221
+Maldives,2018,466
+Nepal,1990,19277
+Nepal,2018,28030
+Pakistan,1990,114152
+Pakistan,2018,225032
+Sri Lanka,1990,16338
+Sri Lanka,2018,22173
+South-Eastern Asia,1990,435529
+South-Eastern Asia,2018,659798
+Brunei Darussalam,1990,252
+Brunei Darussalam,2018,435
+Cambodia,1990,7221
+Cambodia,2018,16178
+Indonesia,1990,181870
+Indonesia,2018,268673
+Lao People's Democratic Republic,1990,4251
+Lao People's Democratic Republic,2018,7073
+Malaysia,1990,17573
+Malaysia,2018,32638
+Myanmar,1990,39520
+Myanmar,2018,52088
+Philippines,1990,62012
+Philippines,2018,108799
+Singapore,1990,2989
+Singapore,2018,5611
+Thailand,1990,54281
+Thailand,2018,71291
+Timor-Leste,1990,753
+Timor-Leste,2018,1264
+Viet Nam,1990,64809
+Viet Nam,2018,95747
+Western Asia,1990,146760
+Western Asia,2018,277029
+Armenia,1990,3521
+Armenia,2018,2912
+Azerbaijan,1990,7191
+Azerbaijan,2018,10012
+Bahrain,1990,506
+Bahrain,2018,1502
+Cyprus,1990,783
+Cyprus,2018,1263
+Georgia,1990,5481
+Georgia,2018,3793
+Iraq,1990,17623
+Iraq,2018,39789
+Israel,1990,4422
+Israel,2018,8436
+Jordan,1990,3431
+Jordan,2018,10344
+Kuwait,1990,2259
+Kuwait,2018,4227
+Lebanon,1990,3562
+Lebanon,2018,6075
+Oman,1990,1720
+Oman,2018,4584
+Qatar,1990,433
+Qatar,2018,2742
+Saudi Arabia,1990,10383
+Saudi Arabia,2018,30594
+State of Palestine,1990,2096
+State of Palestine,2018,4797
+Syrian Arab Republic,1990,12378
+Syrian Arab Republic,2018,19200
+Türkiye,1990,55507
+Türkiye,2018,83875
+United Arab Emirates,1990,1844
+United Arab Emirates,2018,9296
+Yemen,1990,13621
+Yemen,2018,33588
+Europe,1990,722829
+Europe,2018,748046
+Eastern Europe,1990,311024
+Eastern Europe,2018,295056
+Belarus,1990,10184
+Belarus,2018,9489
+Bulgaria,1990,8882
+Bulgaria,2018,7050
+Czechia,1990,10304
+Czechia,2018,10546
+Hungary,1990,10383
+Hungary,2018,9777
+Poland,1990,38004
+Poland,2018,38249
+Republic of Moldova,1990,4447
+Republic of Moldova,2018,3172
+Romania,1990,22926
+Romania,2018,19646
+Russian Federation,1990,148642
+Russian Federation,2018,146349
+Slovakia,1990,5259
+Slovakia,2018,5440
+Ukraine,1990,51992
+Ukraine,2018,45339
+Northern Europe,1990,92080
+Northern Europe,2018,104827
+Denmark,1990,5135
+Denmark,2018,5781
+Estonia,1990,1570
+Estonia,2018,1319
+Faroe Islands,1990,48
+Faroe Islands,2018,51
+Finland,1990,4975
+Finland,2018,5513
+Guernsey,1990,59
+Guernsey,2018,62
+Iceland,1990,254
+Iceland,2018,349
+Ireland,1990,3507
+Ireland,2018,4841
+Isle of Man,1990,68
+Isle of Man,2018,84
+Jersey,1990,84
+Jersey,2018,102
+Latvia,1990,2665
+Latvia,2018,1935
+Lithuania,1990,3691
+Lithuania,2018,2810
+Norway,1990,4233
+Norway,2018,5295
+Sweden,1990,8527
+Sweden,2018,10120
+United Kingdom,1990,57265
+United Kingdom,2018,66565
+Southern Europe,1990,143827
+Southern Europe,2018,152756
+Albania,1990,3274
+Albania,2018,2897
+Andorra,1990,51
+Andorra,2018,75
+Bosnia and Herzegovina,1990,4443
+Bosnia and Herzegovina,2018,3407
+Croatia,1990,4828
+Croatia,2018,4047
+Gibraltar,1990,27
+Gibraltar,2018,35
+Greece,1990,10237
+Greece,2018,10740
+Holy See,1990,1
+Holy See,2018,1
+Italy,1990,57001
+Italy,2018,60336
+Kosovo (under UNSC res. 1244),1990,1960
+Kosovo (under UNSC res. 1244),2018,1772
+Malta,1990,366
+Malta,2018,476
+Montenegro,1990,619
+Montenegro,2018,618
+North Macedonia,1990,2060
+North Macedonia,2018,1930
+Portugal,1990,9999
+Portugal,2018,10327
+San Marino,1990,23
+San Marino,2018,34
+Serbia,1990,7879
+Serbia,2018,7047
+Slovenia,1990,1996
+Slovenia,2018,2063
+Spain,1990,39062
+Spain,2018,46952
+Western Europe,1990,175898
+Western Europe,2018,195407
+Austria,1990,7646
+Austria,2018,8823
+Belgium,1990,9947
+Belgium,2018,11400
+France,1990,56847
+France,2018,65397
+Germany,1990,79376
+Germany,2018,83253
+Liechtenstein,1990,29
+Liechtenstein,2018,38
+Luxembourg,1990,379
+Luxembourg,2018,602
+Monaco,1990,30
+Monaco,2018,38
+Netherlands,1990,14968
+Netherlands,2018,17369
+Switzerland,1990,6675
+Switzerland,2018,8486
+Latin America and the Caribbean,1990,437742
+Latin America and the Caribbean,2018,634319
+Caribbean,1990,33860
+Caribbean,2018,43111
+Anguilla,1990,8
+Anguilla,2018,15
+Antigua and Barbuda,1990,63
+Antigua and Barbuda,2018,91
+Aruba,1990,64
+Aruba,2018,106
+Bahamas,1990,274
+Bahamas,2018,392
+Barbados,1990,258
+Barbados,2018,280
+"Bonaire, Sint Eustatius and Saba",1990,13
+"Bonaire, Sint Eustatius and Saba",2018,25
+British Virgin Islands,1990,15
+British Virgin Islands,2018,33
+Cayman Islands,1990,25
+Cayman Islands,2018,65
+Cuba,1990,10583
+Cuba,2018,11237
+Curaçao,1990,156
+Curaçao,2018,169
+Dominica,1990,70
+Dominica,2018,68
+Dominican Republic,1990,7076
+Dominican Republic,2018,10725
+Grenada,1990,100
+Grenada,2018,116
+Guadeloupe,1990,386
+Guadeloupe,2018,418
+Haiti,1990,6784
+Haiti,2018,10891
+Jamaica,1990,2370
+Jamaica,2018,2818
+Martinique,1990,368
+Martinique,2018,367
+Montserrat,1990,11
+Montserrat,2018,5
+Puerto Rico,1990,3525
+Puerto Rico,2018,3291
+Saint Barthélemy,1990,5
+Saint Barthélemy,2018,10
+Saint Kitts and Nevis,1990,41
+Saint Kitts and Nevis,2018,47
+Saint Lucia,1990,137
+Saint Lucia,2018,177
+Saint Martin (French part),1990,28
+Saint Martin (French part),2018,37
+Saint Vincent and the Grenadines,1990,112
+Saint Vincent and the Grenadines,2018,105
+Sint Maarten (Dutch part),1990,27
+Sint Maarten (Dutch part),2018,39
+Trinidad and Tobago,1990,1247
+Trinidad and Tobago,2018,1450
+Turks and Caicos Islands,1990,11
+Turks and Caicos Islands,2018,41
+United States Virgin Islands,1990,102
+United States Virgin Islands,2018,94
+Central America,1990,110982
+Central America,2018,172389
+Belize,1990,181
+Belize,2018,377
+Costa Rica,1990,3082
+Costa Rica,2018,4936
+El Salvador,1990,5349
+El Salvador,2018,6218
+Guatemala,1990,8898
+Guatemala,2018,16712
+Honduras,1990,4910
+Honduras,2018,9676
+Mexico,1990,82018
+Mexico,2018,123978
+Nicaragua,1990,4114
+Nicaragua,2018,6358
+Panama,1990,2429
+Panama,2018,4134
+South America,1990,292900
+South America,2018,418819
+Argentina,1990,32515
+Argentina,2018,44479
+Bolivia (Plurinational State of),1990,7055
+Bolivia (Plurinational State of),2018,11427
+Brazil,1990,147832
+Brazil,2018,205431
+Chile,1990,13324
+Chile,2018,18722
+Colombia,1990,32103
+Colombia,2018,48560
+Ecuador,1990,10358
+Ecuador,2018,16892
+Falkland Islands (Malvinas),1990,2
+Falkland Islands (Malvinas),2018,4
+French Guiana,1990,110
+French Guiana,2018,279
+Guyana,1990,752
+Guyana,2018,771
+Paraguay,1990,3982
+Paraguay,2018,6383
+Peru,1990,21772
+Peru,2018,31556
+Suriname,1990,411
+Suriname,2018,597
+Uruguay,1990,3095
+Uruguay,2018,3392
+Venezuela (Bolivarian Republic of),1990,19588
+Venezuela (Bolivarian Republic of),2018,30327
+Northern America,1990,279547
+Northern America,2018,370844
+Bermuda,1990,57
+Bermuda,2018,64
+Canada,1990,27594
+Canada,2018,37043
+Greenland,1990,56
+Greenland,2018,56
+Saint Pierre and Miquelon,1990,6
+Saint Pierre and Miquelon,2018,6
+United States of America,1990,251834
+United States of America,2018,333675
+Oceania,1990,26588
+Oceania,2018,42462
+Australia/New Zealand,1990,20349
+Australia/New Zealand,2018,29789
+Australia,1990,17004
+Australia,2018,24930
+New Zealand,1990,3345
+New Zealand,2018,4859
+Melanesia,1990,5257
+Melanesia,2018,11468
+Fiji,1990,770
+Fiji,2018,918
+New Caledonia,1990,174
+New Caledonia,2018,284
+Papua New Guinea,1990,3840
+Papua New Guinea,2018,9287
+Solomon Islands,1990,326
+Solomon Islands,2018,697
+Vanuatu,1990,146
+Vanuatu,2018,282
+Micronesia,1990,423
+Micronesia,2018,519
+Guam,1990,137
+Guam,2018,163
+Kiribati,1990,74
+Kiribati,2018,121
+Marshall Islands,1990,44
+Marshall Islands,2018,46
+Micronesia (Fed. States of),1990,100
+Micronesia (Fed. States of),2018,110
+Nauru,1990,10
+Nauru,2018,11
+Northern Mariana Islands,1990,43
+Northern Mariana Islands,2018,50
+Palau,1990,15
+Palau,2018,18
+Polynesia,1990,560
+Polynesia,2018,687
+American Samoa,1990,46
+American Samoa,2018,51
+Cook Islands,1990,17
+Cook Islands,2018,17
+French Polynesia,1990,202
+French Polynesia,2018,280
+Niue,1990,2
+Niue,2018,2
+Samoa,1990,169
+Samoa,2018,206
+Tokelau,1990,2
+Tokelau,2018,2
+Tonga,1990,100
+Tonga,2018,105
+Tuvalu,1990,9
+Tuvalu,2018,11
+Wallis and Futuna Islands,1990,13
+Wallis and Futuna Islands,2018,12

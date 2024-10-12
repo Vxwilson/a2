@@ -21,6 +21,24 @@
         "axis": {"format": "%Y", "title": null}
       }
     },
+    "transform": [
+        {
+            "calculate": "format(datum.max_price_max, '.2f') + ' USD'",
+            "as": "max_price_max_tooltip"
+        },
+        {
+            "calculate": "format(datum.min_price_min, '.2f') + ' USD'",
+            "as": "min_price_min_tooltip"
+        },
+        {
+            "calculate": "toNumber(datum.total_exports)/1000",
+            "as": "total_exports"
+        },
+        {
+            "calculate": "format(toNumber(datum.total_exports), '.2f') + ' million bags'",
+            "as": "total_exports_tooltip"
+        }
+    ],
     "layer": [
       {
         "mark": {"opacity": 0.4, "type": "area", "color": "#8585c5", "interpolate": "monotone"},
@@ -28,7 +46,7 @@
           "y": {
             "aggregate": "average",
             "field": "max_price_max",
-            "title": "Price",
+            "title": "Price (US dollars per kg)",
             "axis": {"titleColor": "#8585c5"},
             "scale": {"domain": [0, 7.5]}
           },
@@ -36,7 +54,13 @@
           "y2": {
             "aggregate": "average",
             "field": "min_price_min"
-          }
+          },
+          "tooltip": [
+            {"field": "year", "type": "temporal","title": "Year", "format": "%Y"},
+            {"field": "max_price_max_tooltip", "title": "Max Price"},
+            {"field": "min_price_min_tooltip", "title": "Min Price"},
+            {"field": "total_exports_tooltip", "title": "Total Production"}
+          ]
         }
       },
       {
@@ -45,8 +69,8 @@
           "y": {
             "aggregate": "average",
             "field": "total_exports",
-            "title": "Total Production",
-            "scale": {"domain": [0, 400000]},
+            "title": "Total Production (in million 60 kg bags)",
+            "scale": {"domain": [0, 400]},
             "axis": {"titleColor":"#7c739b"}
           }
         }

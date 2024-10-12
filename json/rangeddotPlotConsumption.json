@@ -1,0 +1,130 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Consumption per Capita",
+        "anchor": "start",
+        "dx": 75,
+        "subtitle": []
+    },
+    "width": 920,
+    "height": 450,
+    "description": "A ranged dot plot that uses 'layer' to convey changing life expectancy for the five most populous countries (between 1955 and 2000).",
+    "data": {
+        "url": "data/per_capita_consumption_1990_2018.csv"
+    },
+    "transform": [
+        {
+            "filter": {
+                "field": "Country",
+                "oneOf": [
+                    "Viet Nam",
+                    "Brazil",
+                    "Mexico",
+                    "Panama",
+                    "Colombia",
+                    "Thailand",
+                    "Uganda",
+                    "Cuba",
+                    "Sri Lanka",
+                    "Kenya",
+                    "Rwanda",
+                    "Peru",
+                    "Philippines",
+                    "Cameroon",
+                    "Costa Rica",
+                    "Honduras"
+                ]
+            }
+        },
+        {
+            "filter": {
+                "field": "Year",
+                "oneOf": [
+                    1990,
+                    2018
+                ]
+            }
+        },
+        {"calculate": "datum.Country + ', ' + datum.Year", "as": "Countrytooltip"},
+        {"calculate": "format(datum.Consumption, '.3f') + ' kg per capita'", "as": "Consumptiontooltip"}
+    ],
+    "encoding": {
+        "x": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "title": "Coffee Consumption (kg per person)"
+        },
+        "y": {
+            "field": "Country",
+            "type": "nominal",
+            "title": "",
+            "sort": {"op": "max", "field": "Consumption"},
+            "axis": {
+                "offset": 5,
+                "ticks": false,
+                "minExtent": 70,
+                "domain": false
+            }
+        }
+    },
+    "layer": [
+        {
+            "mark": { "type": "line", "size": 10 },
+            "encoding": {
+                "detail": {
+                    "field": "Country",
+                    "type": "nominal"
+                },
+                "color": {
+                    "value": "#eaeaea"
+                }
+            }
+        },
+        {   
+            "mark": {
+                "type": "point",
+                "filled": true
+            },
+            "encoding": {
+                "color": {
+                    "field": "Year",
+                    "type": "ordinal",
+                    "scale": {
+                        "domain": [
+                            1990,
+                            2018
+                        ],
+                        "range": [
+                            "#f6d962",
+                            "#e9934c"
+                        ]
+                    },
+                    "title": "Year"
+                },
+                "size": {
+                    "value": 100
+                },
+                "opacity": {
+                    "value": 1
+                },
+                "stroke": {
+                    "value": "#2947ce"
+                },
+                "strokeWidth": {
+                    "value": 1.5
+                },
+                "tooltip": [
+                    {
+                      "field": "Countrytooltip",
+                      "type": "nominal",
+                      "title": "Location"
+                    },
+                    {
+                      "field": "Consumptiontooltip",
+                      "title": "Consumption" 
+                    }
+                  ]
+            }
+        }
+    ]
+}

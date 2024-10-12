@@ -199,7 +199,7 @@ form.vega-bindings {
 
 #layeredplotExports {
     width: 80% !important;
-    margin-left: -2% !important;
+    margin-left: -3% !important;
     margin-bottom: 40px !important;
 }
 
@@ -212,6 +212,12 @@ form.vega-bindings {
 #smallMultiplesRetail {
     width: 80% !important;
     margin-left: 1% !important;
+    margin-bottom: 40px !important;
+}
+
+#rangeddotPlotConsumption{
+    width: 80% !important;
+    margin-left: -5% !important;
     margin-bottom: 40px !important;
 }
 
