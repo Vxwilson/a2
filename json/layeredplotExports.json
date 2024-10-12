@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Production versus Price",
+        "anchor": "start",
+        "dx": 37,
+        "subtitle": [
+            "Does supply drive price [5]?"
+        ]
+      },
+    "description": "A dual axis chart, created by setting y's scale resolution to `\"independent\"`",
+    "width": 900,
+    "height": 450,
+    "data": {
+      "url": "data/merged-coffee-data.csv"
+    },
+    "encoding": {
+      "x": {
+        "timeUnit": "year",
+        "field": "year",
+        "axis": {"format": "%Y", "title": null}
+      }
+    },
+    "layer": [
+      {
+        "mark": {"opacity": 0.4, "type": "area", "color": "#8585c5", "interpolate": "monotone"},
+        "encoding": {
+          "y": {
+            "aggregate": "average",
+            "field": "max_price_max",
+            "title": "Price",
+            "axis": {"titleColor": "#8585c5"},
+            "scale": {"domain": [0, 7.5]}
+          },
+  
+          "y2": {
+            "aggregate": "average",
+            "field": "min_price_min"
+          }
+        }
+      },
+      {
+        "mark": {"stroke": "#7c739b", "type": "line", "interpolate": "monotone", "size": 2},
+        "encoding": {
+          "y": {
+            "aggregate": "average",
+            "field": "total_exports",
+            "title": "Total Production",
+            "scale": {"domain": [0, 400000]},
+            "axis": {"titleColor":"#7c739b"}
+          }
+        }
+      }
+    ],
+    "resolve": {"scale": {"y": "independent"}}
+  }
+  

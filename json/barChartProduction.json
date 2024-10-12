@@ -151,7 +151,11 @@
           "strokeWidth": {
             "value": 0
           },
-          "title": "Production"
+          "title": "Production",
+          "legend": {
+            "title": "Production (millions of 60kg bags)",
+            "disable": true
+          }
         },
         "tooltip": [
           {
@@ -213,7 +217,7 @@
         "baseline": "middle",
         "format": ".2f",
 
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": "regular",
         "lineBreak": "\\n"
       },
@@ -258,8 +262,7 @@
         "align": "left",
         "baseline": "middle",
         "format": ".2f",
-
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": "regular"
       },
       "encoding": {

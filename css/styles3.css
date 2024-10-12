@@ -166,7 +166,7 @@ form.vega-bindings {
 }
 
 #barChartExports {
-    margin-left: -8% !important;
+    margin-left: -11.5% !important;
     width: 88% !important;
     margin-bottom: 30px !important;
 }
@@ -194,6 +194,12 @@ form.vega-bindings {
 #lineChartPriceDiff {
     width: 80% !important;
     margin-left: 2.5% !important;
+    margin-bottom: 40px !important;
+}
+
+#layeredplotExports {
+    width: 80% !important;
+    margin-left: -2% !important;
     margin-bottom: 40px !important;
 }
 

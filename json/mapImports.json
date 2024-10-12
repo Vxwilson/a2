@@ -57,7 +57,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#bfdbe870"
+        "fill": "#bfdbe847"
       }
     },
     {
@@ -172,6 +172,7 @@
             "type": "threshold",
             "domain": [
               0,
+              0.000005,
               0.00001,
               0.0005,
               0.1,
@@ -182,6 +183,7 @@
               20
             ],
             "range": [
+              "#ffffff00",
               "#ffffff00",
               "#fff9cea5",
               "#fffab8d9",
@@ -234,11 +236,11 @@
           "as": "annotationText"
         },
         {
-          "calculate": "-165",
+          "calculate": "-145",
           "as": "longitude"
         },
         {
-          "calculate": "36",
+          "calculate": "10",
           "as": "latitude"
         }
       ],
@@ -269,19 +271,19 @@
           "filter": "datum.properties.NAME == 'Canada'"
         },
         {
-          "calculate": "-125",
+          "calculate": "-110",
           "as": "longitude"
         },
         {
-          "calculate": "52",
+          "calculate": "49",
           "as": "latitude"
         },
         {
-          "calculate": "-180",
+          "calculate": "-135",
           "as": "longitude2"
         },
         {
-          "calculate": "40",
+          "calculate": "16",
           "as": "latitude2"
         },
         {
@@ -315,15 +317,15 @@
           "filter": "datum.properties.NAME == 'Malaysia'"
         },
         {
-          "calculate": "split('Though positioned in the bean \\nbelt, Malaysia\\'s soil is not \\nsuitable for mass cultivation.', '\\n')",
+          "calculate": "split('Though positioned in the \\nbean belt, Malaysia\\'s \\nsoil is not suitable \\nfor mass cultivation.', '\\n')",
           "as": "annotationText"
         },
         {
-          "calculate": "100",
+          "calculate": "120",
           "as": "longitude"
         },
         {
-          "calculate": "18",
+          "calculate": "27",
           "as": "latitude"
         }
       ],
@@ -362,11 +364,11 @@
           "as": "latitude"
         },
         {
-          "calculate": "120",
+          "calculate": "125",
           "as": "longitude2"
         },
         {
-          "calculate": "10",
+          "calculate": "19",
           "as": "latitude2"
         },
         {
@@ -489,11 +491,11 @@
           "as": "annotationText"
         },
         {
-          "calculate": "70",
+          "calculate": "72",
           "as": "longitude"
         },
         {
-          "calculate": "69",
+          "calculate": "65",
           "as": "latitude"
         }
       ],

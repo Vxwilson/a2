@@ -22,7 +22,6 @@
             <h2>Prepared by Pong Vei Xhen 33480982</h2>
             <h2> Updated October 10, 2024</h2>
         </span>
-        <!-- paragraph -->
         <p>As the second most traded commodity in the world, coffee is a global phenomenon. This visualization explores
             the worldwide production, consumption, and trade of coffee. The data is sourced from the International
             Coffee Organization (ICO) with the use of Kaggle.</p>
@@ -41,30 +40,14 @@
             </div>
             <div class="horizontalcontainer">
                 <div id="mapImports" class="vis"></div>
-                <!-- <div class="vis spacer50"></div> -->
             </div>
-
-            <!-- <div class="chart-wrapper"> -->
-            <!-- <button id="toggleChart" class="button" onclick="toggleChartView()">Show Price Difference</button> -->
-            <!-- <button id="toggleChart" class="button" onclick="toggleChartView()">Switch</button> -->
-            <!-- <div class="horizontalcontainer"> -->
-
-            <!-- </div> -->
-            <!-- </div> -->
-
             <div class="horizontalcontainer">
                 <div id="lineChartPrices" class="vis"></div>
 
             </div>
-            <!-- <div class="horizontalcontainer">
-               
-                <div id="lineChartPriceDiff" class="vis"></div>
-            </div> -->
-            <!--             
             <div class="horizontalcontainer">
-                <div id="lineChartPrices" class="vis"></div>
-                <div id="lineChartPriceDiff" class="vis"></div>
-            </div> -->
+                <div id="layeredplotExports" class="vis"></div>
+            </div>
             <div class="horizontalcontainer">
                 <div id="smallMultiplesGrowers" class="vis"></div>
             </div>
@@ -99,44 +82,26 @@
                     <li>2008. See Meseums Victoria Collection's <a
                             href="https://collections.museumsvictoria.com.au/articles/2933" target="_blank">article</a>.
                     </li>
+                    <li>Here we use the min and max price of all 4 coffee types aggregated in a single year. While this introduces ambiguity to the interpretation of the correlation,
+                        the goal is to provide a general overview of the price trend.
+                    </li>
                 </ol>
             </div>
         </div>
     </div>
     <script>
-        let showingPrices = true;
-
-        function toggleChartView() {
-            showingPrices = !showingPrices;
-            const pricesChart = document.getElementById("lineChartPrices");
-            const diffChart = document.getElementById("lineChartPriceDiff");
-            const toggleButton = document.getElementById("toggleChart");
-
-
-            if (showingPrices) {
-                pricesChart.style.width = "80%";
-                diffChart.style.width = "0%";
-                // toggleButton.textContent = "Show Price Difference"; // Update button text
-            } else {
-                pricesChart.style.width = "0%";
-                diffChart.style.width = "80%";
-                // toggleButton.textContent = "Show Prices"; // Update button text
-            }
-        }
-
-        // toggleChartView();
-
-        const sharedParam = {
-            "name": "yearSelection",
-            "value": 1990,
-            "bind": {
-                "input": "range",
-                "min": 1990,
-                "max": 2018,
-                "step": 1,
-                "name": "Year:"
-            }
-        };
+        // no longer used
+        // const sharedParam = {
+        //     "name": "yearSelection",
+        //     "value": 1990,
+        //     "bind": {
+        //         "input": "range",
+        //         "min": 1990,
+        //         "max": 2018,
+        //         "step": 1,
+        //         "name": "Year:"
+        //     }
+        // };
 
         // use fetch to load the config.json file to be used in the vegaEmbed
         fetch('json/config.json')
@@ -220,6 +185,21 @@
                             .catch(console.warn);
                     });
 
+                // fetch line chart data
+                fetch('json/layeredplotExports.json')
+                    .then(response => response.json())
+                    .then(spec => {
+                        // Now configData contains the parsed JSON object
+                        vegaEmbed("#layeredplotExports", spec, {
+                            mode: "vega-lite",
+                            renderer: "svg",
+                            actions: false,
+                            config: configData
+                        })
+                            .then(console.log)
+                            .catch(console.warn);
+                    });
+
                 // fetch small multiples data
                 fetch('json/horizonChartGrowers.json')
                     .then(response => response.json())
@@ -253,10 +233,6 @@
 
 
         var elems = document.querySelectorAll('vega-bind');
-
-        // last-of-type = NodeList length - 1
-        if (elems.length)
-            elems[elems.length - 1].className += 'last-of-type';
     </script>
 </body>
 
