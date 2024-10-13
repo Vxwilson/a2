@@ -26,6 +26,9 @@ This project includes the following visualizations:
 
 Open [webpage](https://vxwilson.github.io/a2) in your web browser.
 
+## 5 Design Sheets
+Open [pdf](https://github.com/Vxwilson/a2/blob/main/assignment2_5ds.pdf).
+
 ## Footnotes/Caveats
 
 See footnotes within the `index.html` webpage regarding data limitations and specific visualization interpretations.
