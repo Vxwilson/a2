@@ -20,7 +20,7 @@
         <h1>The Worldwide Phenomenon of Coffee</h1>
         <span>
             <h2>Prepared by Pong Vei Xhen 33480982</h2>
-            <h2> Updated October 10, 2024</h2>
+            <h2> Updated October 13, 2024</h2>
         </span>
         <p>As the second most traded commodity in the world, coffee is a global phenomenon. This visualization explores
             the worldwide production, consumption, and trade of coffee. The data is sourced from the International
@@ -122,7 +122,7 @@
                         vegaEmbed("#barChartExports", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -138,7 +138,7 @@
                         vegaEmbed("#mapImports", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -153,7 +153,7 @@
                         vegaEmbed("#streamGraphTop5", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -168,7 +168,7 @@
                         vegaEmbed("#lineChartPrices", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -176,19 +176,19 @@
                     });
 
                 // fetch line chart data
-                fetch('json/lineChartPriceDiff.json')
-                    .then(response => response.json())
-                    .then(spec => {
-                        // Now configData contains the parsed JSON object
-                        vegaEmbed("#lineChartPriceDiff", spec, {
-                            mode: "vega-lite",
-                            renderer: "svg",
-                            actions: false,
-                            config: configData
-                        })
-                            .then(console.log)
-                            .catch(console.warn);
-                    });
+                // fetch('json/lineChartPriceDiff.json')
+                //     .then(response => response.json())
+                //     .then(spec => {
+                //         // Now configData contains the parsed JSON object
+                //         vegaEmbed("#lineChartPriceDiff", spec, {
+                //             mode: "vega-lite",
+                //             renderer: "svg",
+                //             actions: false,
+                //             config: configData
+                //         })
+                //             .then(console.log)
+                //             .catch(console.warn);
+                //     });
 
                 // fetch line chart data
                 fetch('json/layeredplotExports.json')
@@ -198,7 +198,7 @@
                         vegaEmbed("#layeredplotExports", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -213,7 +213,7 @@
                         vegaEmbed("#smallMultiplesGrowers", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -228,7 +228,7 @@
                         vegaEmbed("#smallMultiplesRetail", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
@@ -243,7 +243,7 @@
                         vegaEmbed("#rangeddotPlotConsumption", spec, {
                             mode: "vega-lite",
                             renderer: "svg",
-                            actions: false,
+                            actions: true,
                             config: configData
                         })
                             .then(console.log)
