@@ -1,5 +1,8 @@
 import pandas as pd
 
+# used to produce the indicator_prices_avgdiff.csv file
+# no longer used for final output
+
 def preprocess_coffee_data(csv_filepath):
     """
     Preprocesses coffee price data by calculating the difference from the average 
@@ -16,9 +19,7 @@ def preprocess_coffee_data(csv_filepath):
 
         # Calculate the average price for each coffee group
         coffee_groups = ["Colombian Milds", "Other Milds", "Brazilian Naturals", "Robustas"]
-        # averages = df[coffee_groups].mean()
 
-        # Calculate the difference from the average for each group
         for group in coffee_groups:
             df[group] = df[group] - df["ICO composite indicator"]
 
@@ -37,12 +38,9 @@ def preprocess_coffee_data(csv_filepath):
         print(f"An unexpected error occurred: {e}")
         return None
 
-
-# Example usage (replace with your file path):
 filepath = "data/indicator-prices.csv"  
 processed_df = preprocess_coffee_data(filepath)
 
 if processed_df is not None:
     print(processed_df)
-    # You can now save the processed DataFrame to a new CSV file if needed:
     processed_df.to_csv("data/indicator_prices_avgdiff.csv", index=False) 
