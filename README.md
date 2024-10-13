@@ -24,7 +24,7 @@ This project includes the following visualizations:
 
 ## Running the Visualizations
 
-Open [webpage](vxwilson.github.io/A2) in your web browser.
+Open [webpage](https://vxwilson.github.io/a2) in your web browser.
 
 ## Footnotes/Caveats
 
